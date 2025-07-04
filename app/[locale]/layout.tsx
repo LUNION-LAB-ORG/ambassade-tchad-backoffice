@@ -18,8 +18,8 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import getQueryClient from "@/lib/get-query-client";
 
 export const metadata: Metadata = {
-  title: "Dashcode admin Template",
-  description: "created by codeshaper",
+  title: "Dashboard Ambassade de tchad",
+  description: "Back-office de l'ambassade du tchad en côte d'ivoire",
 };
 
 export default async function RootLayout({

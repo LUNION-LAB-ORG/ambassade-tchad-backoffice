@@ -18,8 +18,8 @@ const DashCodeHeader = async () => {
 
     return (
         <>
-            <HeaderContent>
-                <div className=' flex gap-3 items-center'>
+            <HeaderContent >
+                <div className='flex gap-3 items-center'>
                     <HeaderLogo />
                     <SidebarToggle />
                     <HeaderSearch />

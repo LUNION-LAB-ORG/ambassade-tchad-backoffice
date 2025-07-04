@@ -19,55 +19,55 @@ import { cn } from "@/lib/utils";
 
 export type DataProps = {
   id: string | number;
-  order: number;
+  hour: string;
   customer: {
     name: string;
     image: string;
   };
   date: string;
-  quantity: number;
-  amount: string;
-  status: "paid" | "due" | "canceled";
+  demanded: string;
+  task: string;
+  status: "approuvé" | "en attente" | "annulé";
   action: React.ReactNode;
 }
 export const columns: ColumnDef<DataProps>[] = [
+  // {
+  //   id: "select",
+  //   header: ({ table }) => (
+  //     <Checkbox
+  //       checked={
+  //         table.getIsAllPageRowsSelected() ||
+  //         (table.getIsSomePageRowsSelected() && "indeterminate")
+  //       }
+  //       onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
+  //       aria-label="Select all"
+  //     />
+  //   ),
+  //   cell: ({ row }) => (
+  //     <div className="xl:w-16">
+  //       <Checkbox
+  //         checked={row.getIsSelected()}
+  //         onCheckedChange={(value) => row.toggleSelected(!!value)}
+  //         aria-label="Select row"
+  //       />
+  //     </div>
+  //   ),
+  //   enableSorting: false,
+  //   enableHiding: false,
+  // },
+  // {
+  //   accessorKey: "id",
+  //   header: "id",
+  //   cell: ({ row }) => <span>{row.getValue("id")}</span>,
+  // },
   {
-    id: "select",
-    header: ({ table }) => (
-      <Checkbox
-        checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
-        }
-        onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-        aria-label="Select all"
-      />
-    ),
-    cell: ({ row }) => (
-      <div className="xl:w-16">
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Select row"
-        />
-      </div>
-    ),
-    enableSorting: false,
-    enableHiding: false,
+    accessorKey: "hour",
+    header: "Hour",
+    cell: ({ row }) => <span>{row.getValue("hour")}</span>,
   },
   {
-    accessorKey: "id",
-    header: "id",
-    cell: ({ row }) => <span>{row.getValue("id")}</span>,
-  },
-  {
-    accessorKey: "order",
-    header: "Order",
-    cell: ({ row }) => <span>{row.getValue("order")}</span>,
-  },
-  {
-    accessorKey: "customer",
-    header: "Customer",
+    accessorKey: "user",
+    header: "User",
     cell: ({ row }) => {
       const user = row.original.customer;
       return (
@@ -90,30 +90,30 @@ export const columns: ColumnDef<DataProps>[] = [
       )
     }
   },
+  // {
+  //   accessorKey: "date",
+  //   header: "Date",
+  //   cell: ({ row }) => {
+  //     return (
+  //       <span>{row.getValue("date")}</span>
+  //     )
+  //   }
+  // },
   {
-    accessorKey: "date",
-    header: "Date",
+    accessorKey: "demanded",
+    header: "Demanded",
     cell: ({ row }) => {
       return (
-        <span>{row.getValue("date")}</span>
+        <span>{row.getValue("demanded")}</span>
       )
     }
   },
   {
-    accessorKey: "quantity",
-    header: "Quantity",
+    accessorKey: "task",
+    header: "Task",
     cell: ({ row }) => {
       return (
-        <span>{row.getValue("quantity")}</span>
-      )
-    }
-  },
-  {
-    accessorKey: "amount",
-    header: "Amount",
-    cell: ({ row }) => {
-      return (
-        <span>{row.getValue("amount")}</span>
+        <span>{row.getValue("task")}</span>
       )
     }
   },
@@ -122,9 +122,9 @@ export const columns: ColumnDef<DataProps>[] = [
     header: "Status",
     cell: ({ row }) => {
       const statusColors: Record<string, string> = {
-        paid: "bg-success/20 text-success",
-        due: "bg-warning/20 text-warning",
-        canceled: "bg-destructive/20 text-destructive"
+        approuvé: "bg-success/20 text-success",
+        "en attente": "bg-yellow-100 text-warning",
+        annulé: "bg-destructive/20 text-destructive"
       };
       const status = row.getValue<string>("status");
       const statusStyles = statusColors[status] || "default";

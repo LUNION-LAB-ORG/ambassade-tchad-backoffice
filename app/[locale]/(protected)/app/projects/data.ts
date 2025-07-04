@@ -76,7 +76,7 @@ export const defaultProjects = [
   },
   {
     id: faker.string.uuid(),
-    title: "Analytics Dashboard ",
+    title: "Dashboard ",
     projectLogo: "/images/project/p-2.png",
     desc: "Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.",
     startDate: "2022-10-03",
