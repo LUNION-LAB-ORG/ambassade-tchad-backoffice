@@ -1,63 +1,21 @@
-import { StatusBlock } from "@/components/blocks/status-block";
-import ServicesList from "@/components/contenu/services-list";
-import { Box, ShoppingCart, TrendingUp } from "lucide-react";
+import ServiceCardsContainer from "@/components/contenu/service-cards-container";
 import { useTranslations } from "next-intl";
 
 export default function ServicePage() {
   const t = useTranslations("contenu.gestionService");
+  
   return (
-    <div className="container">
-      <div className="grid grid-cols-12 gap-6 mt-6">
-        <div className="col-span-12">
-          <h1 className="text-2xl font-bold">{t("title")}</h1>
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
-          {/* <WelcomeBlock>
-                      <div className="max-w-[180px] relative z-10">
-                        <h4 className="text-xl font-medium text-primary-foreground dark:text-default-900 mb-2">
-                          <span className="block font-normal"> {t("widget_title")}</span>
-                          <span className="block">Mr. Dianne Russell</span>
-                        </h4>
-                        
-                      </div>
-                      <Image
-                        src="/images/all-img/widget-bg-2.png"
-                        width={400}
-                        height={150}
-                        priority
-                        alt="Description of the image"
-                        className="absolute top-0 start-0 w-full h-full object-cover rounded-md"
-                      />
-                    </WelcomeBlock> */}
-          <StatusBlock
-            title={t("total_service")}
-            total="50"
-            iconWrapperClass="bg-info/10"
-            chartColor="#00EBFF"
-            icon={<ShoppingCart className="w-5 h-5  text-info" />}
-          />
-          {/* <StatusBlock
-            title={t("total_publie")}
-            total="150"
-            iconWrapperClass="bg-info/10"
-            chartColor="#00EBFF"
-            icon={<ShoppingCart className="w-5 h-5  text-info" />}
-          />
-          <StatusBlock
-            title={t("total_video")}
-            total="564"
-            icon={<Box className="w-5 h-5 text-warning" />}
-            iconWrapperClass="bg-warning/10"
-            chartColor="#FB8F65"
-          /> */}
-        
-        </div>
-        </div>
-
-       
-        <div className="col-span-12">
-          <ServicesList />
+    <div className="container mx-auto py-6">
+      <div className="mb-8">
+        <div className="bg-gradient-to-r from-[#1e3a8a] to-[#1e40af] dark:from-[#1e3a8a]/90 dark:to-[#1e40af]/90 text-white p-6 rounded-lg shadow-lg">
+          <h1 className="text-3xl font-bold">{t("title")}</h1>
+          <p className="text-blue-100 mt-2">
+            Gérez vos services consulaires facilement
+          </p>
         </div>
       </div>
+      
+      <ServiceCardsContainer />
     </div>
   );
 }

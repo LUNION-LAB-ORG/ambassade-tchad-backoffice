@@ -27,7 +27,7 @@ const HeaderSearch = () => {
 
                 >
                     <Icon icon="heroicons-outline:search" />
-                    <span className="xl:inline-block hidden">Search... </span>
+                    <span className="xl:inline-block hidden">Chercher... </span>
                 </button>
             </DialogTrigger>
             <DialogContent className="p-0">

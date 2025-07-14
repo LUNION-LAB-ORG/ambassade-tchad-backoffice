@@ -45,9 +45,9 @@ export function Cart() {
     return (
         <Sheet >
             <SheetTrigger asChild>
-                <button type="button" className="relative focus:ring-none focus:outline-none md:h-8 md:w-8 md:bg-secondary  text-secondary-foreground   rounded-full  flex flex-col items-center justify-center">
+                <button type="button" className="relative focus:ring-none focus:outline-none md:h-8 md:w-8 md:bg-embassy-blue-100 hover:bg-embassy-blue-200 text-embassy-blue-700 rounded-full flex flex-col items-center justify-center transition-all duration-300 dark:md:bg-embassy-blue-800/30 dark:text-embassy-blue-300 dark:hover:bg-embassy-blue-700/40">
                     <Icon icon="heroicons:shopping-cart" className="h-5 w-5" />
-                    <Badge className=" w-4 h-4 p-0 text-[8px] rounded-full  font-semibold  items-center justify-center absolute left-[calc(100%-12px)] bottom-[calc(100%-10px)] " color="destructive">
+                    <Badge className="w-4 h-4 p-0 text-[8px] rounded-full font-semibold items-center justify-center absolute left-[calc(100%-12px)] bottom-[calc(100%-10px)] bg-embassy-red-500 text-white border-white dark:border-slate-800" color="destructive">
                         0
                     </Badge>
                 </button>

@@ -20,14 +20,11 @@ const DashCodeHeader = async () => {
         <>
             <HeaderContent >
                 <div className='flex gap-3 items-center'>
-                    <HeaderLogo />
-                    <SidebarToggle />
-                    <HeaderSearch />
+                    <HeaderLogo /> 
                 </div>
                 <div className="nav-tools flex items-center  md:gap-4 gap-3">
                     <LocalSwitcher />
-                    <ThemeSwitcher />
-                    <Cart />
+                    <ThemeSwitcher /> 
                     <Messages />
                     <Notifications />
                     <ProfileInfo />

@@ -8,15 +8,13 @@ import {
   DropdownMenuPortal,
   DropdownMenuSeparator,
   DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
+  DropdownMenuSubContent, 
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Icon } from "@/components/ui/icon"
 import { signOut, auth } from "@/lib/auth";
 import Image from "next/image";
-import { Link } from '@/i18n/routing';
-import { Button } from "@/components/ui/button";
+import { Link } from '@/i18n/routing'; 
 
 const ProfileInfo = async () => {
   const session = await auth();
@@ -26,43 +24,39 @@ const ProfileInfo = async () => {
   return (
     <div className="md:block hidden">
       <DropdownMenu>
-        <DropdownMenuTrigger asChild className=" cursor-pointer">
-          <div className=" flex items-center gap-3  text-default-800 ">
-
+        <DropdownMenuTrigger asChild className="cursor-pointer">
+          <div className="flex items-center gap-3 text-embassy-blue-800 hover:bg-embassy-blue-50  bg-embassy-blue-50 rounded-lg px-2 py-1 transition-all duration-200 dark:text-embassy-blue-200 dark:hover:bg-embassy-blue-800/30">
             <Image
-              src={session?.user?.image as string}
+              src="/images/all-img/user3.png"
               alt={session?.user?.name?.charAt(0) as string}
               width={36}
               height={36}
-              className="rounded-full"
+              className="rounded-full border-2 border-embassy-blue-200 dark:border-embassy-blue-600"
             />
-
-            <div className="text-sm font-medium  capitalize lg:block hidden  ">
+            <div className="text-sm font-semibold capitalize lg:block hidden">
               {session?.user?.name}
             </div>
-            <span className="text-base  me-2.5 lg:inline-block hidden">
+            <span className="text-base me-2.5 lg:inline-block hidden text-white dark:text-embassy-blue-400">
               <Icon icon="heroicons-outline:chevron-down"></Icon>
             </span>
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-56 p-0" align="end">
-          <DropdownMenuLabel className="flex gap-2 items-center mb-1 p-3">
-
+        <DropdownMenuContent className="w-56 p-0 bg-white/95 backdrop-blur-sm border border-embassy-blue-200 shadow-xl dark:bg-slate-800/95 dark:border-embassy-blue-400/30" align="end">
+          <DropdownMenuLabel className="flex gap-3 items-center mb-1 p-4 border-b border-embassy-blue-100 dark:border-embassy-blue-700/30">
             <Image
               src={session?.user?.image as string}
               alt={session?.user?.name?.charAt(0) as string}
-              width={36}
-              height={36}
-              className="rounded-full"
+              width={40}
+              height={40}
+              className="rounded-full border-2 border-embassy-blue-200 dark:border-embassy-blue-600"
             />
-
             <div>
-              <div className="text-sm font-medium text-default-800 capitalize ">
+              <div className="text-sm font-semibold text-embassy-blue-800 capitalize dark:text-embassy-blue-200">
                 {session?.user?.name}
               </div>
               <Link
                 href="/dashboard"
-                className="text-xs text-default-600 hover:text-primary"
+                className="text-xs text-embassy-blue-600 hover:text-embassy-blue-800 transition-colors dark:text-embassy-blue-400 dark:hover:text-embassy-blue-300"
               >
                 {session?.user?.email}
               </Link>
@@ -71,33 +65,23 @@ const ProfileInfo = async () => {
           <DropdownMenuGroup>
             {[
               {
-                name: "profile",
+                name: "Profil",
                 icon: "heroicons:user",
                 href: "/user-profile"
-              },
+              }, 
               {
-                name: "Billing",
-                icon: "heroicons:megaphone",
-                href: "/dashboard"
-              },
-              {
-                name: "Settings",
+                name: "Paramètres",
                 icon: "heroicons:paper-airplane",
                 href: "/dashboard"
-              },
-              {
-                name: "Keyboard shortcuts",
-                icon: "heroicons:language",
-                href: "/dashboard"
-              },
+              }, 
             ].map((item, index) => (
               <Link
                 href={item.href}
                 key={`info-menu-${index}`}
                 className="cursor-pointer"
               >
-                <DropdownMenuItem className="flex items-center gap-2 text-sm font-medium text-default-600 capitalize px-3 py-1.5 cursor-pointer">
-                  <Icon icon={item.icon} className="w-4 h-4" />
+                <DropdownMenuItem className="flex items-center gap-2 text-sm font-medium text-embassy-blue-700 capitalize px-3 py-2 cursor-pointer hover:bg-embassy-blue-50 rounded-lg mx-2 transition-colors duration-200 dark:text-embassy-blue-300 dark:hover:bg-embassy-blue-800/50">
+                  <Icon icon={item.icon} className="w-4 h-4 text-embassy-blue-600 dark:text-embassy-blue-400" />
                   {item.name}
                 </DropdownMenuItem>
               </Link>
@@ -105,17 +89,9 @@ const ProfileInfo = async () => {
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
-            <Link href="/dashboard" className="cursor-pointer">
-              <DropdownMenuItem className="flex items-center gap-2 text-sm font-medium text-default-600 capitalize px-3 py-1.5 cursor-pointer">
-                <Icon icon="heroicons:user-group" className="w-4 h-4" />
-                team
-              </DropdownMenuItem>
-            </Link>
+          
             <DropdownMenuSub>
-              <DropdownMenuSubTrigger className="flex items-center gap-2 text-sm font-medium text-default-600 capitalize px-3 py-1.5 ">
-                <Icon icon="heroicons:user-plus" className="w-4 h-4" />
-                Invite user
-              </DropdownMenuSubTrigger>
+            
               <DropdownMenuPortal>
                 <DropdownMenuSubContent>
                   {[
@@ -124,10 +100,7 @@ const ProfileInfo = async () => {
                     },
                     {
                       name: "message",
-                    },
-                    {
-                      name: "facebook",
-                    },
+                    }
                   ].map((item, index) => (
                     <Link
                       href="/dashboard"
@@ -142,47 +115,11 @@ const ProfileInfo = async () => {
                 </DropdownMenuSubContent>
               </DropdownMenuPortal>
             </DropdownMenuSub>
-            <Link href="/dashboard">
-              <DropdownMenuItem className="flex items-center gap-2 text-sm font-medium text-default-600 capitalize px-3 py-1.5 cursor-pointer">
-                <Icon icon="heroicons:variable" className="w-4 h-4" />
-                Github
-              </DropdownMenuItem>
-            </Link>
-
-            <DropdownMenuSub>
-              <DropdownMenuSubTrigger className="flex items-center gap-2 text-sm font-medium text-default-600 capitalize px-3 py-1.5 cursor-pointer">
-                <Icon icon="heroicons:phone" className="w-4 h-4" />
-                Support
-              </DropdownMenuSubTrigger>
-              <DropdownMenuPortal>
-                <DropdownMenuSubContent>
-                  {[
-                    {
-                      name: "portal",
-                    },
-                    {
-                      name: "slack",
-                    },
-                    {
-                      name: "whatsapp",
-                    },
-                  ].map((item, index) => (
-                    <Link href="/dashboard" key={`message-sub-${index}`}>
-                      <DropdownMenuItem className="text-sm font-medium text-default-600 capitalize px-3 py-1.5 cursor-pointer">
-                        {item.name}
-                      </DropdownMenuItem>
-                    </Link>
-                  ))}
-                </DropdownMenuSubContent>
-              </DropdownMenuPortal>
-            </DropdownMenuSub>
+         
+          
           </DropdownMenuGroup>
-          <DropdownMenuSeparator className="mb-0 dark:bg-background" />
-          <DropdownMenuItem
-
-            className="flex items-center gap-2 text-sm font-medium text-default-600 capitalize my-1 px-3 cursor-pointer"
-          >
-
+          <DropdownMenuSeparator className="mb-0 bg-embassy-blue-100 dark:bg-embassy-blue-700/30" />
+          <DropdownMenuItem className="flex items-center gap-2 text-sm font-medium text-embassy-red-600 capitalize my-2 px-3 cursor-pointer hover:bg-embassy-red-50 rounded-lg mx-2 transition-colors duration-200 dark:text-embassy-red-400 dark:hover:bg-embassy-red-900/30">
             <div>
               <form
                 action={async () => {
@@ -190,9 +127,9 @@ const ProfileInfo = async () => {
                   await signOut();
                 }}
               >
-                <button type="submit" className=" w-full  flex  items-center gap-2" >
+                <button type="submit" className="w-full flex items-center gap-2">
                   <Icon icon="heroicons:power" className="w-4 h-4" />
-                  Log out
+                  Déconnexion
                 </button>
               </form>
             </div>

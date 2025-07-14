@@ -128,6 +128,7 @@ const HeaderColor = () => {
         <div className="flex gap-1 flex-wrap bg-default-200 p-3 rounded-md">
           {[
             "dark",
+            "embassy",
             "rose",
             "steel-blue",
             "purple",
@@ -150,6 +151,7 @@ const HeaderColor = () => {
                         " border    border-default-300  inline-flex justify-center rounded-md items-center relative h-8 w-8  disabled:cursor-not-allowed duration-150",
                         {
                           "bg-default": color === "dark",
+                          "bg-[#003399]": color === "embassy",
                           "bg-[#343A40]": color === "gray",
                           "bg-[#B52755]": color === "rose",
                           "bg-[#405189]": color === "steel-blue",

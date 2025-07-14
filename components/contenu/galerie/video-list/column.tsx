@@ -1,5 +1,5 @@
 import { ColumnDef } from "@tanstack/react-table"
-import { Eye, SquarePen, Trash2 } from "lucide-react"
+import { Eye, SquarePen, Trash2, Play } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
@@ -47,7 +47,36 @@ export const columns: ColumnDef<DataProps>[] = [
   {
     accessorKey: "video",
     header: "Vidéo",
-    cell: ({ row }) => <span>{row.getValue("video")}</span>,
+    cell: ({ row }) => {
+      const videoUrl = row.getValue("video") as string;
+      return (
+        <div className="flex items-center gap-2">
+          <div className="relative w-20 h-12 bg-gray-100 rounded overflow-hidden group cursor-pointer">
+            <video
+              src={videoUrl}
+              className="w-full h-full object-cover"
+              muted
+              preload="metadata"
+            />
+            <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity">
+              <Play className="w-4 h-4 text-white" />
+            </div>
+          </div>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>
+                <span className="text-xs text-muted-foreground max-w-[100px] truncate">
+                  {videoUrl.split('/').pop()}
+                </span>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{videoUrl}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+      );
+    },
   },
   {
     accessorKey: "description",

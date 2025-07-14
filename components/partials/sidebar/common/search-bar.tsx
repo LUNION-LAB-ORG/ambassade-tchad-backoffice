@@ -35,10 +35,14 @@ const SearchBar = () => {
             >
                 {(config.collapsed && !hovered) ? <CollapsedSearchBar /> :
                     <InputGroup merged >
-                        <InputGroupText className='bg-transparent dark:border-secondary dark:group-focus-within:border-secondary'>
-                            <Search className=' h-4 w-4 dark:text-white' />
+                        <InputGroupText className='bg-embassy-blue-800/30 border-embassy-blue-600/30 group-focus-within:border-embassy-blue-500'>
+                            <Search className='h-4 w-4 text-white' />
                         </InputGroupText>
-                        <Input type="text" placeholder="Search Menu..." className='bg-transparent  dark:border-secondary dark:placeholder-white/80 dark:focus:border-secondary dark:text-white' />
+                        <Input 
+                            type="text" 
+                            placeholder="Search Menu..." 
+                            className='bg-embassy-blue-800/20 border-embassy-blue-600/30 placeholder-white/60 text-white focus:border-embassy-blue-500' 
+                        />
                     </InputGroup>
                 }
             </motion.div>
@@ -60,17 +64,21 @@ const CollapsedSearchBar = () => {
 
                     fullWidth
 
-                    className="h-10 w-14 mx-auto  p-0 md:p-0  dark:border-secondary ring-offset-sidebar"
+                    className="h-10 w-14 mx-auto p-0 md:p-0 bg-embassy-blue-800/30 border-embassy-blue-600/30 hover:bg-embassy-blue-700/40 ring-offset-sidebar"
                 >
-                    <Search className=' h-4 w-4 dark:text-white' />
+                    <Search className='h-4 w-4 text-white' />
                 </Button>
             </HoverCardTrigger>
-            <HoverCardContent className=' dark:bg-sidebar border-sidebar '>
+            <HoverCardContent className='bg-white/95 backdrop-blur-sm border-embassy-blue-200 dark:bg-slate-800/95 dark:border-embassy-blue-600/30 border-sidebar '>
                 <InputGroup merged >
-                    <InputGroupText className='bg-transparent dark:border-secondary dark:group-focus-within:border-secondary'>
-                        <Search className=' h-4 w-4 dark:text-white' />
+                    <InputGroupText className='bg-embassy-blue-800/30 border-embassy-blue-600/30 group-focus-within:border-embassy-blue-500'>
+                        <Search className='h-4 w-4 text-white' />
                     </InputGroupText>
-                    <Input type="text" placeholder="Search Menu..." className='bg-transparent  dark:border-secondary dark:placeholder-white/80 dark:focus:border-secondary dark:text-white' />
+                    <Input 
+                        type="text" 
+                        placeholder="Search Menu..." 
+                        className='bg-embassy-blue-800/20 border-embassy-blue-600/30 placeholder-white/60 text-white focus:border-embassy-blue-500' 
+                    />
                 </InputGroup>
             </HoverCardContent>
         </HoverCard>

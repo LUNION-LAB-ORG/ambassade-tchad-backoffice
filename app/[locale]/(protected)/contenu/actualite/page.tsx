@@ -1,62 +1,62 @@
 import { StatusBlock } from "@/components/blocks/status-block";
-import ActualiteList from "@/components/contenu/actualite-list";
-import { Box, ShoppingCart, TrendingUp } from "lucide-react";
+import ActualiteCardsContainer from "@/components/contenu/actualite-cards-container";
+import { BookOpen, FileText, Eye, Archive, Users } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 export default function ActualiteListPage() {
   const t = useTranslations("contenu.gestionActualite");
   return (
-    <div className="container">
-      <div className="grid grid-cols-12 gap-6 mt-6">
-        <div className="col-span-12">
-          <h1 className="text-2xl font-bold">{t("title")}</h1>
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
-          {/* <WelcomeBlock>
-                      <div className="max-w-[180px] relative z-10">
-                        <h4 className="text-xl font-medium text-primary-foreground dark:text-default-900 mb-2">
-                          <span className="block font-normal"> {t("widget_title")}</span>
-                          <span className="block">Mr. Dianne Russell</span>
-                        </h4>
-                        
-                      </div>
-                      <Image
-                        src="/images/all-img/widget-bg-2.png"
-                        width={400}
-                        height={150}
-                        priority
-                        alt="Description of the image"
-                        className="absolute top-0 start-0 w-full h-full object-cover rounded-md"
-                      />
-                    </WelcomeBlock> */}
-          <StatusBlock
-            title={t("total_brouillon")}
-            total="50"
-            iconWrapperClass="bg-info/10"
-            chartColor="#00EBFF"
-            icon={<ShoppingCart className="w-5 h-5  text-info" />}
-          />
-          <StatusBlock
-            title={t("total_publie")}
-            total="150"
-            iconWrapperClass="bg-info/10"
-            chartColor="#00EBFF"
-            icon={<ShoppingCart className="w-5 h-5  text-info" />}
-          />
-          <StatusBlock
-            title={t("total_actualite")}
-            total="564"
-            icon={<Box className="w-5 h-5 text-warning" />}
-            iconWrapperClass="bg-warning/10"
-            chartColor="#FB8F65"
-          />
-          
+    <div className="space-y-8">
+      {/* En-tête avec titre et description */}
+      <div className="bg-gradient-to-r from-embassy-blue-600 to-embassy-blue-700 dark:from-embassy-blue-800 dark:to-embassy-blue-900 rounded-xl p-8 text-white shadow-lg dark:shadow-2xl">
+        <div className="flex items-center gap-4">
+          <div className="p-3 bg-white/20 dark:bg-white/10 rounded-lg backdrop-blur-sm">
+            <BookOpen className="w-8 h-8" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold">{t("title")}</h1>
+            <p className="text-embassy-blue-100 dark:text-embassy-blue-200 mt-2">
+              Gérez et organisez vos actualités avec une interface moderne et intuitive
+            </p>
+          </div>
         </div>
-        </div>
+      </div>
 
-       
-        <div className="col-span-12">
-          <ActualiteList />
-        </div>
+      {/* Statistiques */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <StatusBlock
+          title={t("total_brouillon")}
+          total="8"
+          iconWrapperClass="bg-orange-100 dark:bg-orange-900/30"
+          chartColor="#FB923C"
+          icon={<FileText className="w-5 h-5 text-orange-600" />}
+        />
+        <StatusBlock
+          title={t("total_publie")}
+          total="15"
+          iconWrapperClass="bg-emerald-100 dark:bg-emerald-900/30"
+          chartColor="#10B981"
+          icon={<Eye className="w-5 h-5 text-emerald-600" />}
+        />
+        <StatusBlock
+          title={t("total_actualite")}
+          total="28"
+          icon={<BookOpen className="w-5 h-5 text-embassy-blue-600" />}
+          iconWrapperClass="bg-embassy-blue-100 dark:bg-embassy-blue-900/30"
+          chartColor="#2563EB"
+        />
+        <StatusBlock
+          title="Vues Total"
+          total="3,456"
+          icon={<Users className="w-5 h-5 text-embassy-yellow-600" />}
+          iconWrapperClass="bg-embassy-yellow-100 dark:bg-embassy-yellow-900/30"
+          chartColor="#FBBF24"
+        />
+      </div>
+
+      {/* Composant principal des actualités */}
+      <div className="bg-white dark:bg-default-100 rounded-xl shadow-sm border border-default-200/50 p-6">
+        <ActualiteCardsContainer />
       </div>
     </div>
   );

@@ -1,19 +1,10 @@
 @import "tailwindcss";
+@import "../../styles/video-player.css";
 @config "../../tailwind.config.ts";
-
-/*
-  @custom-variant permet de définir de nouvelles variantes.
-  Ici, la variante 'dark' est activée si un élément est
-  à l'intérieur d'un parent avec la classe '.dark'.
-*/
+ 
 @custom-variant dark (&:is(.dark *));
 
-/*
-  @theme est l'endroit où vous définissez votre design system
-  en utilisant des variables CSS. Tailwind générera les classes utilitaires
-  à partir de ces définitions.
-  Les valeurs par défaut de ces variables sont définies dans @layer base :root { ... }.
-*/
+ 
 @theme {
   /* Couleurs de base (dérivées des variables CSS définies dans @layer base) */
   --color-border: hsl(var(--border));
@@ -222,19 +213,19 @@
     --card-foreground: 222.2 84% 4.9%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 215.3 19.3% 34.5%;
-    --accent: 210 40% 96.1%;
+    --secondary: 10 95% 58%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 48 100% 50%;
     --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --success: 154 52% 55%;
     --success-foreground: 138.5 76.5% 96.7%;
-    --warning: 16 93% 70%;
-    --warning-foreground: 33.3 100% 96.5%;
-    --info: 185 96% 51%;
-    --info-foreground: 183.2 100% 96.3%;
-    --ring: 222.2 84% 4.9%;
+    --warning: 48 100% 50%;
+    --warning-foreground: 222.2 47.4% 11.2%;
+    --info: 220 100% 30%;
+    --info-foreground: 0 0% 100%;
+    --ring: 220 100% 30%;
     --radius: 0.5rem;
     --default-50: 210 40% 98%;
     --default-100: 210 40% 96.1%;
@@ -249,26 +240,26 @@
     --default-950: 222.2 84% 4.9%;
     --default: 222.2 47.4% 11.2%;
     --default-foreground: 210 40% 98%;
-    --primary-50: 213.8 100% 96.9%;
-    --primary-100: 214.3 94.6% 92.7%;
-    --primary-200: 213.3 96.9% 87.3%;
-    --primary-300: 211.7 96.4% 78.4%;
-    --primary-400: 213.1 93.9% 67.8%;
-    --primary-500: 217.2 91.2% 59.8%;
-    --primary-600: 221.2 83.2% 53.3%;
-    --primary-700: 224.3 76.3% 48%;
-    --primary-800: 225.9 70.7% 40.2%;
-    --primary-900: 224.4 64.3% 32.9%;
-    --primary-950: 226.2 57% 21%;
-    --primary: 221.2 83.2% 53.3%;
-    --primary-foreground: 210 40% 98%;
+    --primary-50: 220 100% 97%;
+    --primary-100: 220 100% 92%;
+    --primary-200: 220 100% 84%;
+    --primary-300: 220 100% 72%;
+    --primary-400: 220 100% 58%;
+    --primary-500: 220 100% 45%;
+    --primary-600: 220 100% 30%;
+    --primary-700: 220 100% 25%;
+    --primary-800: 220 100% 20%;
+    --primary-900: 220 100% 15%;
+    --primary-950: 220 100% 8%;
+    --primary: 220 100% 30%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Valeurs par défaut spécifiques pour sidebar, header, et menu-arrow si non définies ailleurs */
-    --sidebar: 0 0% 100%;
-    --header: 0 0% 100%;
-    --menu-arrow: 228, 45%, 98%;
-    --menu-arrow-active: 212.7 26.8% 83.9%;
-    --menu-foreground: 215, 20%, 65%;
+    /* Couleurs Tchad - Valeurs spécifiques pour sidebar, header, et menu */
+    --sidebar: 220 100% 30%;
+    --header: 220 100% 30%;
+    --menu-arrow: 220 100% 45%;
+    --menu-arrow-active: 10 95% 58%;
+    --menu-foreground: 0 0% 100%;
   }
 
   /* Définitions du thème sombre (surcharges pour .dark) */
@@ -283,21 +274,21 @@
     --card-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 215.3 25% 26.7%;
-    --secondary-foreground: 210 40% 98%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --primary: 220 100% 45%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 10 95% 58%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 48 100% 50%;
+    --accent-foreground: 222.2 47.4% 11.2%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --success: 154 52% 55%;
     --success-foreground: 138.5 76.5% 96.7%;
-    --warning: 16 93% 70%;
-    --warning-foreground: 33.3 100% 96.5%;
-    --info: 185 96% 51%;
-    --info-foreground: 183.2 100% 96.3%;
-    --ring: 212.7 26.8% 83.9%;
+    --warning: 48 100% 50%;
+    --warning-foreground: 222.2 47.4% 11.2%;
+    --info: 220 100% 45%;
+    --info-foreground: 0 0% 100%;
+    --ring: 220 100% 45%;
     --default-950: 210 40% 98%;
     --default-900: 210 40% 96.1%;
     --default-800: 214.3 31.8% 91.4%;
@@ -311,11 +302,11 @@
     --default-50: 222.2 84% 4.9%;
     --default: 213.8 100% 96.9%;
     --default-foreground: 222.2 47.4% 11.2%;
-    --sidebar: 215 27.9% 16.9%;
-    --header: 215 27.9% 16.9%;
-    --menu-arrow: 215.3 25% 26.7%;
-    --menu-arrow-active: 215.3 19.3% 34.5%;
-    --menu-foreground: 214.3 31.8% 91.4%;
+    --sidebar: 220 100% 20%;
+    --header: 220 100% 20%;
+    --menu-arrow: 220 100% 45%;
+    --menu-arrow-active: 10 95% 58%;
+    --menu-foreground: 210 40% 98%;
   }
 
   /*
@@ -388,6 +379,35 @@
   .theme-transparent {
     --header: transparent;
     box-shadow: none;
+  }
+
+  /* Thème Ambassade - Couleurs officielles */
+  .theme-embassy {
+    /* Couleur principale - Bleu #003399 */
+    --primary: 220 100% 30%;
+    --primary-foreground: 0 0% 100%;
+    --sidebar: 220 100% 30%;
+    --header: 220 100% 30%;
+    
+    /* Couleur secondaire - Rouge/Orange #fa4c31 */
+    --secondary: 10 95% 58%;
+    --secondary-foreground: 0 0% 100%;
+    
+    /* Couleur accent - Jaune/Or #fecb00 */
+    --accent: 48 100% 50%;
+    --accent-foreground: 220 100% 30%;
+    
+    /* Couleurs système adaptées */
+    --warning: 48 100% 50%;
+    --warning-foreground: 220 100% 30%;
+    --info: 220 100% 30%;
+    --info-foreground: 0 0% 100%;
+    --ring: 220 100% 30%;
+    
+    /* Navigation et menu */
+    --menu-arrow: 220 100% 45%;
+    --menu-arrow-active: 10 95% 58%;
+    --menu-foreground: 0 0% 100%;
   }
 
   .input-group :not(:first-child) input {
@@ -768,4 +788,97 @@ html[dir="rtl"] .react-select .select__loading-indicator {
   flex: 1;
   overflow-y: auto;
   width: 100%;
+}
+
+/* Embassy Toast Styles */
+.embassy-toast {
+  @apply rounded-xl border border-embassy-blue-200 bg-white/95 backdrop-blur-sm shadow-xl;
+  box-shadow: 0 10px 25px rgba(0, 51, 153, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.embassy-toast-dark {
+  @apply bg-slate-800/95 border-embassy-blue-400/30 text-slate-100;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 51, 153, 0.1);
+}
+
+.embassy-toast-success {
+  @apply border-emerald-200 bg-emerald-50/95 text-emerald-800;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.embassy-toast-error {
+  @apply border-embassy-red-200 bg-embassy-red-50/95 text-embassy-red-800;
+  box-shadow: 0 10px 25px rgba(250, 76, 49, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.embassy-toast-warning {
+  @apply border-embassy-yellow-200 bg-embassy-yellow-50/95 text-embassy-yellow-800;
+  box-shadow: 0 10px 25px rgba(254, 203, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.embassy-toast-info {
+  @apply border-embassy-blue-200 bg-embassy-blue-50/95 text-embassy-blue-800;
+  box-shadow: 0 10px 25px rgba(0, 51, 153, 0.1), 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Toast animations and transitions */
+@keyframes embassy-toast-slide-in {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes embassy-toast-slide-out {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.embassy-toast-enter {
+  animation: embassy-toast-slide-in 0.3s ease-out;
+}
+
+.embassy-toast-exit {
+  animation: embassy-toast-slide-out 0.2s ease-in;
+}
+
+/* Custom toaster positioning */
+.embassy-toaster {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 9999;
+  max-width: 420px;
+}
+
+/* Dark mode specific toast styles */
+.dark .embassy-toast {
+  @apply bg-slate-800/95 border-embassy-blue-400/30 text-slate-100;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3), 0 4px 12px rgba(0, 51, 153, 0.1);
+}
+
+.dark .embassy-toast-success {
+  @apply bg-emerald-900/90 border-emerald-400/30 text-emerald-100;
+}
+
+.dark .embassy-toast-error {
+  @apply bg-red-900/90 border-red-400/30 text-red-100;
+}
+
+.dark .embassy-toast-warning {
+  @apply bg-yellow-900/90 border-yellow-400/30 text-yellow-100;
+}
+
+.dark .embassy-toast-info {
+  @apply bg-embassy-blue-900/90 border-embassy-blue-400/30 text-embassy-blue-100;
 }

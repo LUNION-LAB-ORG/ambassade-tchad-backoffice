@@ -294,31 +294,334 @@
             "title":"Gestion des actualités",
             "total_brouillon": "Total d'actualité brouillon",
             "total_publie": "Total d'actualité publié",
-            "total_actualite": "Total des actualités"
+            "total_actualite": "Total des actualités",
+            "create_article": "Créer un article",
+            "edit_article": "Modifier l'article",
+            "delete_article": "Supprimer l'article",
+            "view_article": "Voir l'article",
+            "search_placeholder": "Rechercher par titre ou description...",
+            "no_results": "Aucune actualité trouvée",
+            "status": {
+                "brouillon": "Brouillon",
+                "publie": "Publié",
+                "archive": "Archivé"
+            },
+            "category": {
+                "diplomatie": "Diplomatie",
+                "culture": "Culture",
+                "economie": "Économie",
+                "societe": "Société",
+                "education": "Éducation"
+            },
+            "fields": {
+                "titre": "Titre",
+                "description": "Description",
+                "contenu": "Contenu",
+                "image": "Image principale",
+                "status": "Statut",
+                "categorie": "Catégorie",
+                "tags": "Étiquettes",
+                "priorite": "Priorité",
+                "langue": "Langue",
+                "metaTitre": "Méta titre",
+                "metaDescription": "Méta description",
+                "datePublication": "Date de publication",
+                "vues": "Nombre de vues"
+            },
+            "priority": {
+                "normale": "Normale",
+                "importante": "Importante",
+                "urgente": "Urgente"
+            },
+            "filters": {
+                "all_status": "Tous les statuts",
+                "all_categories": "Toutes catégories",
+                "all_priorities": "Toutes priorités"
+            },
+            "labels": {
+                "articles_found_singular": "article trouvé",
+                "articles_found_plural": "articles trouvés"
+            },
+            "empty_state": {
+                "title": "Aucune actualité trouvée",
+                "description": "Essayez de modifier vos filtres ou créez un nouvel article",
+                "create_button": "Créer un article"
+            }
         },
         "gestionEvenement":{
             "title":"Gestion des évènements",
             "total_brouillon": "Total d'évènement brouillon",
             "total_publie": "Total d'évènement publié",
-            "total_evenement": "Total des évènement"
+            "total_evenement": "Total des évènement",
+            "create_event": "Créer un événement",
+            "edit_event": "Modifier l'événement",
+            "delete_event": "Supprimer l'événement",
+            "view_event": "Voir l'événement",
+            "search_placeholder": "Rechercher par titre, description ou lieu...",
+            "no_results": "Aucun événement trouvé",
+            "status": {
+                "brouillon": "Brouillon",
+                "publie": "Publié",
+                "annule": "Annulé",
+                "archive": "Archivé"
+            },
+            "type": {
+                "conference": "Conférence",
+                "seminaire": "Séminaire",
+                "atelier": "Atelier",
+                "ceremonie": "Cérémonie",
+                "reception": "Réception",
+                "formation": "Formation",
+                "autre": "Autre"
+            },
+            "fields": {
+                "titre": "Titre",
+                "description": "Description",
+                "contenu": "Contenu",
+                "dateDebut": "Date de début",
+                "dateFin": "Date de fin",
+                "heureDebut": "Heure de début",
+                "heureFin": "Heure de fin",
+                "lieu": "Lieu",
+                "adresse": "Adresse",
+                "image": "Image principale",
+                "status": "Statut",
+                "categorie": "Catégorie",
+                "tags": "Étiquettes",
+                "priorite": "Priorité",
+                "langue": "Langue",
+                "metaTitre": "Méta titre",
+                "metaDescription": "Méta description",
+                "capaciteMax": "Capacité maximale",
+                "prixEntree": "Prix d'entrée",
+                "gratuit": "Gratuit",
+                "inscriptionRequise": "Inscription requise",
+                "lienInscription": "Lien d'inscription",
+                "typeEvenement": "Type d'événement",
+                "contact": "Contact"
+            },
+            "priority": {
+                "normale": "Normale",
+                "importante": "Importante",
+                "urgente": "Urgente"
+            },
+            "filters": {
+                "all_status": "Tous les statuts",
+                "all_types": "Tous les types", 
+                "all_priorities": "Toutes priorités"
+            },
+            "labels": {
+                "upcoming": "À venir",
+                "free": "Gratuit",
+                "participants": "participants",
+                "registration_link": "Lien d'inscription",
+                "organized_by": "Organisé par",
+                "events_found_singular": "événement trouvé",
+                "events_found_plural": "événements trouvés"
+            },
+            "empty_state": {
+                "title": "Aucun événement trouvé",
+                "description": "Essayez de modifier vos filtres ou créez un nouvel événement",
+                "create_button": "Créer un événement"
+            }
         },
         "gestionGalerie":{
             "photo":{
                 "title": "Gestion de la galerie Photos",
                 "total_brouillon": "Total de photo brouillon",
                 "total_publie": "Total de photo publié",
-                "total_photo": "Total des photos"
+                "total_photo": "Total des photos",
+                "create_photo": "Ajouter une photo",
+                "edit_photo": "Modifier la photo",
+                "delete_photo": "Supprimer la photo",
+                "view_photo": "Voir la photo",
+                "search_placeholder": "Rechercher par titre, description ou tags...",
+                "no_results": "Aucune photo trouvée",
+                "status": {
+                    "brouillon": "Brouillon",
+                    "publie": "Publié",
+                    "archive": "Archivé"
+                },
+                "category": {
+                    "evenement": "Événement",
+                    "reception": "Réception",
+                    "conference": "Conférence",
+                    "culture": "Culture",
+                    "diplomatie": "Diplomatie",
+                    "autre": "Autre"
+                },
+                "fields": {
+                    "titre": "Titre",
+                    "description": "Description",
+                    "image": "Image",
+                    "status": "Statut",
+                    "categorie": "Catégorie",
+                    "tags": "Étiquettes",
+                    "dateAjout": "Date d'ajout",
+                    "taille": "Taille du fichier",
+                    "resolution": "Résolution"
+                },
+                "filters": {
+                    "all_status": "Tous les statuts",
+                    "all_categories": "Toutes catégories",
+                    "all_priorities": "Toutes priorités"
+                },
+                "labels": {
+                    "photos_found_singular": "photo trouvée",
+                    "photos_found_plural": "photos trouvées",
+                    "file_size": "Taille",
+                    "resolution": "Résolution",
+                    "taken_by": "Prise par"
+                },
+                "placeholders": {
+                    "search": "Rechercher dans la galerie..."
+                },
+                "empty_state": {
+                    "title": "Aucune photo trouvée",
+                    "description": "Essayez de modifier vos filtres ou ajoutez une nouvelle photo",
+                    "create_button": "Ajouter une photo"
+                },
+                "priority": {
+                    "normale": "Normale",
+                    "importante": "Importante",
+                    "urgente": "Urgente"
+                }
             },
             "videos": {
-                "title": "Gestion de la galérie Vidéos",
-                "total_brouillon": "Total de video brouillon",
-                "total_publie": "Total de videos publié",
-                "total_video": "Total des videos"
+                "title": "Gestion de la galerie Vidéos",
+                "total_brouillon": "Total de vidéo brouillon",
+                "total_publie": "Total de vidéos publié",
+                "total_video": "Total des vidéos",
+                "create_video": "Ajouter une vidéo",
+                "edit_video": "Modifier la vidéo",
+                "delete_video": "Supprimer la vidéo",
+                "view_video": "Voir la vidéo",
+                "search_placeholder": "Rechercher par titre, description ou tags...",
+                "no_results": "Aucune vidéo trouvée",
+                "status": {
+                    "brouillon": "Brouillon",
+                    "publie": "Publié",
+                    "archive": "Archivé"
+                },
+                "category": {
+                    "evenement": "Événement",
+                    "interview": "Interview",
+                    "presentation": "Présentation",
+                    "culture": "Culture",
+                    "documentaire": "Documentaire",
+                    "diplomatie": "Diplomatie",
+                    "ceremonie": "Cérémonie",
+                    "autre": "Autre"
+                },
+                "fields": {
+                    "titre": "Titre",
+                    "description": "Description",
+                    "url": "URL de la vidéo",
+                    "thumbnail": "Miniature",
+                    "status": "Statut",
+                    "categorie": "Catégorie",
+                    "tags": "Étiquettes",
+                    "dateAjout": "Date d'ajout",
+                    "duree": "Durée",
+                    "qualite": "Qualité"
+                },
+                "filters": {
+                    "all_status": "Tous les statuts",
+                    "all_categories": "Toutes catégories",
+                    "all_priorities": "Toutes priorités"
+                },
+                "labels": {
+                    "videos_found_singular": "vidéo trouvée",
+                    "videos_found_plural": "vidéos trouvées",
+                    "duration": "Durée",
+                    "quality": "Qualité",
+                    "uploaded_by": "Ajoutée par"
+                },
+                "placeholders": {
+                    "search": "Rechercher dans les vidéos..."
+                },
+                "empty_state": {
+                    "title": "Aucune vidéo trouvée",
+                    "description": "Essayez de modifier vos filtres ou ajoutez une nouvelle vidéo",
+                    "create_button": "Ajouter une vidéo"
+                },
+                "priority": {
+                    "normale": "Normale",
+                    "importante": "Importante",
+                    "urgente": "Urgente"
+                }
             }
         },
         "gestionService":{
             "title":"Gestion des services",
-            "total_service": " Total de services"
+            "total_service": "Total de services",
+            "total_actif": "Services actifs",
+            "total_inactif": "Services inactifs",
+            "create_service": "Créer un service",
+            "edit_service": "Modifier le service",
+            "delete_service": "Supprimer le service",
+            "view_service": "Voir le service",
+            "search_placeholder": "Rechercher par nom, description ou type...",
+            "no_results": "Aucun service trouvé",
+            "status": {
+                "actif": "Actif",
+                "inactif": "Inactif",
+                "maintenance": "En maintenance",
+                "bientot_disponible": "Bientôt disponible"
+            },
+            "type": {
+                "consulaire": "Service consulaire",
+                "visa": "Visa",
+                "passeport": "Passeport",
+                "authentification": "Authentification",
+                "notariat": "Notariat"
+            },
+            "fields": {
+                "nom": "Nom du service",
+                "description": "Description",
+                "type": "Type de service",
+                "status": "Statut",
+                "tarif": "Tarif",
+                "delaiTraitement": "Délai de traitement",
+                "documentsRequis": "Documents requis",
+                "contact": "Contact responsable",
+                "horaires": "Horaires d'ouverture"
+            },
+            "filters": {
+                "all_status": "Tous les statuts",
+                "all_categories": "Toutes catégories",
+                "all_priorities": "Toutes priorités"
+            },
+            "labels": {
+                "services_found_singular": "service trouvé",
+                "services_found_plural": "services trouvés",
+                "processing_time": "Délai de traitement",
+                "price": "Tarif",
+                "recent": "Nouveau",
+                "free": "Gratuit",
+                "responsible": "Responsable"
+            },
+            "placeholders": {
+                "search": "Rechercher un service..."
+            },
+            "empty_state": {
+                "title": "Aucun service trouvé",
+                "description": "Essayez de modifier vos filtres ou ajoutez un nouveau service",
+                "create_button": "Ajouter un service"
+            },
+            "priority": {
+                "normale": "Normale",
+                "importante": "Importante",
+                "urgente": "Urgente"
+            },
+            "category": {
+                "consulaire": "Consulaire",
+                "administratif": "Administratif",
+                "juridique": "Juridique",
+                "culture": "Culture",
+                "commerce": "Commerce",
+                "autre": "Autre"
+            }
         }
     },
     "finance":{
