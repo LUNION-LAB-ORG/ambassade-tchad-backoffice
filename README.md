@@ -1,287 +1,390 @@
-## Description Générale
+# Standards, Architecture et Bonnes Pratiques — Guide Technique Next.js
 
-Next-Starter est un template d'administration moderne et complet développé avec Next.js 14, React 18 et Tailwind CSS. Ce projet offre une solution complète pour créer des interfaces d'administration professionnelles avec une architecture modulaire et des fonctionnalités avancées.
-
-**Objectif** : Fournir un template d'administration prêt à l'emploi avec des composants UI réutilisables, une authentification complète, une gestion d'état moderne et une interface utilisateur responsive.
-
-**Audience cible** : Développeurs React/Next.js cherchant à créer rapidement des applications d'administration avec une base solide et des fonctionnalités avancées.
-
-## Architecture / Structure du Projet
-
-### Structure des Dossiers Principaux
-
-```
-start/
-├── app/                          # App Router Next.js 14
-│   ├── [locale]/                 # Internationalisation (en, ar)
-│   │   ├── (protected)/          # Routes protégées (authentification requise)
-│   │   │   ├── app/              # Applications principales
-│   │   │   │   ├── calendar/     # Gestionnaire de calendrier
-│   │   │   │   ├── chat/         # Système de chat
-│   │   │   │   ├── email/        # Client email
-│   │   │   │   ├── kanban/       # Tableau Kanban
-│   │   │   │   ├── projects/     # Gestion de projets
-│   │   │   │   └── todo/         # Gestionnaire de tâches
-│   │   │   ├── dashboard/        # Tableaux de bord
-│   │   │   ├── components/       # Composants UI
-│   │   │   ├── forms/            # Formulaires
-│   │   │   ├── table/            # Tableaux de données
-│   │   │   └── charts/           # Graphiques et visualisations
-│   │   └── auth/                 # Pages d'authentification
-│   └── api/                      # API Routes
-├── components/                    # Composants réutilisables
-│   ├── ui/                       # Composants UI de base (shadcn/ui)
-│   ├── partials/                 # Composants partiels (header, sidebar, footer)
-│   └── blocks/                   # Blocs de contenu
-├── features/                     # Architecture par fonctionnalités
-│   ├── menu/                     # Gestion des menus/plats
-│   └── notifications/            # Système de notifications
-├── hooks/                        # Hooks React personnalisés
-├── lib/                          # Utilitaires et configurations
-├── providers/                    # Providers React (thème, auth, etc.)
-├── types/                        # Définitions TypeScript
-└── public/                       # Assets statiques
-```
-
-### Fichiers Clés
-
-- **`next.config.mjs`** : Configuration Next.js avec internationalisation et Nextra
-- **`middleware.ts`** : Middleware pour la gestion des locales et l'authentification
-- **`tailwind.config.ts`** : Configuration Tailwind CSS avec thème personnalisé
-- **`components.json`** : Configuration shadcn/ui
-- **`config/site.ts`** : Configuration globale du site
-- **`lib/auth.ts`** : Configuration NextAuth.js
-
-## Technologies Utilisées
-
-### Framework Principal
-- **Next.js 14** - Framework React avec App Router
-- **React 18** - Bibliothèque UI
-- **TypeScript** - Typage statique
-
-### Styling et UI
-- **Tailwind CSS** - Framework CSS utilitaire
-- **shadcn/ui** - Composants UI réutilisables
-- **Radix UI** - Composants primitifs accessibles
-- **Lucide React** - Icônes
-- **Framer Motion** - Animations
-
-### Gestion d'État et Données
-- **TanStack Query** - Gestion des requêtes et cache
-- **Jotai** - Gestion d'état atomique
-- **React Hook Form** - Gestion des formulaires
-- **Zod** - Validation de schémas
-
-### Authentification et Sécurité
-- **NextAuth.js** - Authentification complète
-- **Providers** : Google, GitHub, Credentials
-
-### Internationalisation
-- **next-intl** - Support multilingue (EN/AR)
-- **RTL Support** - Support des langues de droite à gauche
-
-### Visualisation et Graphiques
-- **ApexCharts** - Graphiques interactifs
-- **Chart.js** - Graphiques simples
-- **Recharts** - Graphiques React
-
-### Autres Bibliothèques
-- **FullCalendar** - Calendrier interactif
-- **React Table** - Tableaux de données avancés
-- **React Dropzone** - Upload de fichiers
-- **React Quill** - Éditeur de texte riche
-- **Leaflet** - Cartes interactives
-
-## Installation et Configuration
-
-### Prérequis
-- Node.js 18+ 
-- pnpm (recommandé) ou npm
-
-### Installation
-
-1. **Cloner le projet**
-```bash
-git clone <repository-url>
-cd start
-```
-
-2. **Installer les dépendances**
-```bash
-pnpm install
-# ou
-npm install
-```
-
-3. **Configuration des variables d'environnement**
-```bash
-cp .env.example .env.local
-```
-
-Variables d'environnement requises :
-```env
-NEXTAUTH_SECRET=your-secret-key
-NEXTAUTH_URL=http://localhost:3000
-GOOGLE_CLIENT_ID=your-google-client-id
-GOOGLE_CLIENT_SECRET=your-google-client-secret
-GITHUB_CLIENT_ID=your-github-client-id
-GITHUB_CLIENT_SECRET=your-github-client-secret
-NEXT_PUBLIC_BASE_URL=http://localhost:3000
-```
-
-4. **Lancer le serveur de développement**
-```bash
-pnpm dev
-# ou
-npm run dev
-```
-
-5. **Ouvrir dans le navigateur**
-```
-http://localhost:3000
-```
-
-### Scripts Disponibles
-
-```bash
-pnpm dev          # Serveur de développement
-pnpm build        # Build de production
-pnpm start        # Serveur de production
-pnpm lint         # Vérification du code
-```
-
-## Approche de Développement / Patterns
-
-### Architecture par Fonctionnalités
-Le projet suit une architecture modulaire organisée par fonctionnalités dans le dossier `features/` :
-- Chaque fonctionnalité contient ses types, validations, requêtes et actions
-- Séparation claire des responsabilités
-- Réutilisabilité et maintenabilité
-
-### Patterns Utilisés
-- **Feature-First Architecture** : Organisation par fonctionnalités
-- **Provider Pattern** : Gestion d'état globale avec React Context
-- **Custom Hooks** : Logique métier réutilisable
-- **Component Composition** : Composants modulaires et réutilisables
-- **Type-Safe Development** : TypeScript strict avec Zod pour la validation
-
-### Structure des Composants
-- **UI Components** : Composants de base réutilisables (shadcn/ui)
-- **Partial Components** : Composants spécifiques à l'interface (header, sidebar)
-- **Feature Components** : Composants liés aux fonctionnalités métier
-
-## Guide de Contribution
-
-### Workflow de Développement
-
-1. **Fork du projet**
-2. **Créer une branche feature**
-```bash
-git checkout -b feature/nouvelle-fonctionnalite
-```
-
-3. **Développement**
-- Suivre les conventions TypeScript
-- Utiliser les composants UI existants
-- Ajouter des tests si nécessaire
-- Documenter les nouvelles fonctionnalités
-
-4. **Tests et Linting**
-```bash
-pnpm lint
-pnpm type-check
-```
-
-5. **Commit et Push**
-```bash
-git add .
-git commit -m "feat: ajouter nouvelle fonctionnalité"
-git push origin feature/nouvelle-fonctionnalite
-```
-
-6. **Pull Request**
-- Description claire des changements
-- Tests passants
-- Code review
-
-### Conventions de Code
-- **TypeScript strict** : Utilisation stricte des types
-- **ESLint** : Règles de qualité du code
-- **Prettier** : Formatage automatique
-- **Conventional Commits** : Messages de commit standardisés
-
-### Ajout de Nouveaux Composants
-1. Utiliser shadcn/ui pour les composants de base
-2. Placer dans `components/ui/` pour les composants génériques
-3. Placer dans `components/partials/` pour les composants spécifiques
-4. Documenter les props et l'utilisation
-
-## Tests
-
-### Tests Unitaires
-```bash
-pnpm test
-```
-
-### Tests d'Intégration
-```bash
-pnpm test:integration
-```
-
-### Vérification des Types
-```bash
-pnpm type-check
-```
-
-### Linting
-```bash
-pnpm lint
-```
-
-## Fonctionnalités Principales
-
-### 🎨 Interface Utilisateur
-- Design moderne et responsive
-- Support des thèmes clair/sombre
-- Support RTL (arabe)
-- Composants UI accessibles
-
-### 🔐 Authentification
-- Connexion par email/mot de passe
-- Authentification sociale (Google, GitHub)
-- Protection des routes
-- Gestion des sessions
-
-### 📊 Tableaux de Bord
-- Analytics avancés
-- Graphiques interactifs
-- Métriques en temps réel
-- Personnalisation des widgets
-
-### 📅 Applications Intégrées
-- Calendrier interactif
-- Système de chat
-- Client email
-- Gestionnaire de tâches
-- Tableau Kanban
-- Gestion de projets
-
-### 🌐 Internationalisation
-- Support multilingue (EN/AR)
-- RTL automatique
-- Traductions complètes
-
-## Licence
-
-Ce projet est sous licence propriétaire. Voir le fichier LICENSE pour plus de détails.
-
-## Support
-
-Pour toute question ou support :
-- Documentation : `/docs`
-- Issues : GitHub Issues
-- Email : support@dashcode.com
+## Table des Matières
+- [Configuration de l'Environnement](#configuration-de-lenvironnement)
+- [Architecture du Projet](#architecture-du-projet)
+- [Standards de Code](#standards-de-code)
+- [Composants React](#composants-react)
+- [Gestion d'État et Data Fetching](#gestion-détat-et-data-fetching)
+- [Authentification avec Backend Externe](#authentification-avec-backend-externe)
+- [API Routes & Server Actions](#api-routes--server-actions)
+- [Styling avec Tailwind CSS 4](#styling-avec-tailwind-css-4)
+- [Performance](#performance)
+- [Tests](#tests)
+- [Outils de Développement](#outils-de-développement)
+- [Git Workflow](#git-workflow)
+- [Checklist Avant Pull Request](#checklist-avant-pull-request)
+- [Violations = Code Review Refusé](#violations--code-review-refusé)
+- [Ressources Supplémentaires](#ressources-supplémentaires)
 
 ---
 
-**Next-Starter** - Template d'administration moderne et professionnel pour Next.js
+## Configuration de l'Environnement
+
+**Objectifs :**
+- Garantir un environnement homogène pour tous les développeurs.
+- Faciliter l'onboarding et la reproductibilité.
+
+**Règles à suivre :**
+- Utiliser Node.js LTS (v18+ recommandé).
+- Gérer les dépendances avec `pnpm` ou `yarn` (éviter `npm` pour la cohérence).
+- Versionner les fichiers `.env.example`.
+- Utiliser `nvm` ou `asdf` pour la gestion des versions Node.
+
+**Exemple :**
+```bash
+nvm use 18
+pnpm install
+cp .env.example .env.local
+```
+
+**Erreurs fréquentes à éviter :**
+- Oublier de synchroniser les variables d'environnement.
+- Installer des dépendances avec un autre gestionnaire que celui du projet.
+
+**Outils recommandés :**
+- [nvm](https://github.com/nvm-sh/nvm), [asdf](https://asdf-vm.com/)
+- [Volta](https://volta.sh/) pour le pinning des versions
+
+---
+
+## Architecture du Projet
+
+**Objectifs :**
+- Structurer le code pour la lisibilité, la scalabilité et la maintenabilité.
+
+**Règles à suivre :**
+- Respecter la structure Next.js `/app` (App Router) ou `/pages` selon le projet.
+- Organiser les composants réutilisables dans `/components`.
+- Centraliser les hooks dans `/hooks`.
+- Placer la logique métier dans `/lib` ou `/services`.
+- Isoler les appels API externes dans `/api` ou `/services`.
+
+**Exemple :**
+```
+/app
+  /dashboard
+/components
+/hooks
+/lib
+/services
+/public
+/styles
+```
+
+**Erreurs fréquentes à éviter :**
+- Mélanger logique métier et composants UI.
+- Fichiers trop volumineux (>200 lignes).
+
+**Outils recommandés :**
+- [Hygen](https://www.hygen.io/) pour générer des templates
+
+---
+
+## Standards de Code
+
+**Objectifs :**
+- Assurer la qualité, la lisibilité et la cohérence du code.
+
+**Règles à suivre :**
+- Suivre les conventions [Airbnb](https://github.com/airbnb/javascript) adaptées à React.
+- Utiliser TypeScript strict (`strict: true` dans `tsconfig.json`).
+- Linter avec [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/).
+- Nommer les fichiers et dossiers en kebab-case.
+- Pas de code mort ou de console.log en production.
+
+**Exemple :**
+```tsx
+// Mauvais
+function mycomponent() {}
+
+// Bon
+export function MyComponent() {}
+```
+
+**Erreurs fréquentes à éviter :**
+- Typage `any` non justifié.
+- Fonctions anonymes dans les props.
+
+**Outils recommandés :**
+- [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), [TypeScript](https://www.typescriptlang.org/)
+
+---
+
+## Composants React
+
+**Objectifs :**
+- Créer des composants réutilisables, testables et performants.
+
+**Règles à suivre :**
+- Préférer les composants fonctionnels.
+- Utiliser les hooks pour la logique d'état et d'effet.
+- Props typées avec TypeScript.
+- Découper les composants complexes.
+- Documenter les props importantes avec JSDoc.
+
+**Exemple :**
+```tsx
+type ButtonProps = { label: string; onClick: () => void };
+export function Button({ label, onClick }: ButtonProps) {
+  return <button onClick={onClick}>{label}</button>;
+}
+```
+
+**Erreurs fréquentes à éviter :**
+- Passer trop de props (favoriser la composition).
+- Gérer l'état global dans un composant local.
+
+**Outils recommandés :**
+- [Storybook](https://storybook.js.org/) pour la documentation UI
+
+---
+
+## Gestion d'État et Data Fetching
+
+**Objectifs :**
+- Gérer l'état local et global de façon prévisible et performante.
+- Optimiser le data fetching côté serveur et client.
+
+**Règles à suivre :**
+- Utiliser les hooks natifs (`useState`, `useReducer`, `useContext`).
+- Pour l'état global ou le cache, préférer [Zustand](https://zustand-demo.pmnd.rs/), [Redux Toolkit](https://redux-toolkit.js.org/) ou [React Query](https://tanstack.com/query/v4).
+- Privilégier le data fetching côté serveur (`getServerSideProps`, `getStaticProps`, ou Server Components).
+- Utiliser SWR ou React Query pour le fetching côté client.
+
+**Exemple :**
+```tsx
+import useSWR from 'swr';
+const { data, error } = useSWR('/api/user', fetcher);
+```
+
+**Erreurs fréquentes à éviter :**
+- Dupliquer la logique de fetching.
+- Stocker des données serveur dans l'état local sans synchronisation.
+
+**Outils recommandés :**
+- [React Query](https://tanstack.com/query/v4), [SWR](https://swr.vercel.app/)
+
+---
+
+## Authentification avec Backend Externe
+
+**Objectifs :**
+- Sécuriser l'accès à l'application et protéger les routes sensibles.
+
+**Règles à suivre :**
+- Utiliser [NextAuth.js](https://next-auth.js.org/) ou une solution OAuth2 standard.
+- Ne jamais stocker de token sensible côté client (localStorage interdit pour les tokens).
+- Protéger les routes côté serveur (middleware, server actions).
+- Rafraîchir les tokens de façon sécurisée.
+
+**Exemple :**
+```ts
+// Exemple NextAuth.js dans /api/auth/[...nextauth].ts
+import NextAuth from 'next-auth';
+import Providers from 'next-auth/providers';
+export default NextAuth({
+  providers: [Providers.GitHub({ clientId: '', clientSecret: '' })],
+});
+```
+
+**Erreurs fréquentes à éviter :**
+- Laisser des endpoints non protégés.
+- Exposer des secrets dans le code source.
+
+**Outils recommandés :**
+- [NextAuth.js](https://next-auth.js.org/), [JWT.io](https://jwt.io/)
+
+---
+
+## API Routes & Server Actions
+
+**Objectifs :**
+- Structurer les API internes et les server actions pour la sécurité et la maintenabilité.
+
+**Règles à suivre :**
+- Utiliser `/api` pour les routes REST classiques.
+- Privilégier les Server Actions (App Router) pour la logique côté serveur.
+- Valider systématiquement les entrées utilisateur (ex: [zod](https://zod.dev/)).
+- Gérer les erreurs avec des statuts HTTP explicites.
+
+**Exemple :**
+```ts
+// /app/api/user/route.ts
+import { NextResponse } from 'next/server';
+export async function GET() {
+  return NextResponse.json({ user: 'John' });
+}
+```
+
+**Erreurs fréquentes à éviter :**
+- Ne pas gérer les erreurs ou les statuts HTTP.
+- Mélanger logique métier et gestion de la requête.
+
+**Outils recommandés :**
+- [zod](https://zod.dev/), [Next.js Middleware](https://nextjs.org/docs/app/building-your-application/routing/middleware)
+
+---
+
+## Styling avec Tailwind CSS 4
+
+**Objectifs :**
+- Garantir un design cohérent, responsive et maintenable.
+
+**Règles à suivre :**
+- Utiliser exclusivement Tailwind CSS pour le styling.
+- Centraliser les couleurs et thèmes dans `tailwind.config.js`.
+- Utiliser les classes utilitaires, éviter le CSS custom sauf cas exceptionnel.
+- Préférer les composants UI atomiques.
+
+**Exemple :**
+```tsx
+<button className="bg-primary text-white rounded px-4 py-2">Valider</button>
+```
+
+**Erreurs fréquentes à éviter :**
+- Surcharger les fichiers CSS globaux.
+- Utiliser des classes non définies dans le design system.
+
+**Outils recommandés :**
+- [Tailwind CSS](https://tailwindcss.com/), [Headless UI](https://headlessui.com/)
+
+---
+
+## Performance
+
+**Objectifs :**
+- Optimiser le temps de chargement et la fluidité de l'application.
+
+**Règles à suivre :**
+- Utiliser l'Image Optimization de Next.js (`next/image`).
+- Charger les composants lourds en lazy loading (`dynamic import`).
+- Privilégier le SSR/SSG pour les pages critiques.
+- Analyser les bundles avec [next-bundle-analyzer](https://github.com/vercel/next.js/tree/canary/packages/next-bundle-analyzer).
+
+**Exemple :**
+```tsx
+import dynamic from 'next/dynamic';
+const HeavyComponent = dynamic(() => import('./HeavyComponent'));
+```
+
+**Erreurs fréquentes à éviter :**
+- Importer des librairies inutilisées.
+- Ne pas optimiser les images.
+
+**Outils recommandés :**
+- [next/image](https://nextjs.org/docs/app/api-reference/components/image), [next-bundle-analyzer](https://github.com/vercel/next.js/tree/canary/packages/next-bundle-analyzer)
+
+---
+
+## Tests
+
+**Objectifs :**
+- Garantir la fiabilité et la non-régression du code.
+
+**Règles à suivre :**
+- Écrire des tests unitaires et d'intégration pour chaque feature.
+- Utiliser [Jest](https://jestjs.io/) et [React Testing Library](https://testing-library.com/).
+- Couvrir les cas critiques et les erreurs.
+- Automatiser les tests dans le pipeline CI.
+
+**Exemple :**
+```tsx
+import { render, screen } from '@testing-library/react';
+import { Button } from './Button';
+test('affiche le label', () => {
+  render(<Button label="OK" onClick={() => {}} />);
+  expect(screen.getByText('OK')).toBeInTheDocument();
+});
+```
+
+**Erreurs fréquentes à éviter :**
+- Tester l'implémentation au lieu du comportement.
+- Oublier de mocker les appels externes.
+
+**Outils recommandés :**
+- [Jest](https://jestjs.io/), [React Testing Library](https://testing-library.com/)
+
+---
+
+## Outils de Développement
+
+**Objectifs :**
+- Améliorer la productivité et la qualité du code.
+
+**Règles à suivre :**
+- Utiliser un IDE configuré (VSCode + extensions recommandées).
+- Activer le formatage et le linting à la sauvegarde.
+- Utiliser les devtools Next.js et React.
+
+**Exemple :**
+- Extensions : ESLint, Prettier, Tailwind CSS IntelliSense, GitLens
+
+**Erreurs fréquentes à éviter :**
+- Désactiver les outils de qualité.
+- Ne pas synchroniser la configuration de l'équipe.
+
+**Outils recommandés :**
+- [VSCode](https://code.visualstudio.com/), [GitLens](https://gitlens.amod.io/)
+
+---
+
+## Git Workflow
+
+**Objectifs :**
+- Assurer un historique propre et des livraisons fiables.
+
+**Règles à suivre :**
+- Travailler en feature branch (`feature/`, `fix/`, `chore/`).
+- Rebase avant merge (`git pull --rebase`).
+- Rédiger des messages de commit clairs et concis.
+- Pull Request obligatoire, review par un pair.
+
+**Exemple :**
+```bash
+git checkout -b feature/ajout-auth
+# ... travail ...
+git add .
+git commit -m "feat(auth): ajout de l'authentification OAuth2"
+git push origin feature/ajout-auth
+```
+
+**Erreurs fréquentes à éviter :**
+- Committer sur `main` directement.
+- Messages de commit vagues.
+
+**Outils recommandés :**
+- [Conventional Commits](https://www.conventionalcommits.org/), [GitHub CLI](https://cli.github.com/)
+
+---
+
+## Checklist Avant Pull Request
+
+- [ ] Code relu et testé localement
+- [ ] Pas de console.log ni de code mort
+- [ ] Lint et tests passés
+- [ ] Documentation mise à jour
+- [ ] Rebase sur la branche principale
+- [ ] Description claire de la PR
+
+---
+
+## Violations = Code Review Refusé
+
+- Non-respect des conventions de code
+- Absence de tests pour une nouvelle feature
+- Manque de typage ou typage incorrect
+- Endpoints non sécurisés
+- Styling hors Tailwind CSS
+- Documentation manquante ou obsolète
+
+---
+
+## Ressources Supplémentaires
+
+- [Documentation Next.js](https://nextjs.org/docs)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+- [React Docs](https://react.dev/)
+- [Tailwind CSS Docs](https://tailwindcss.com/docs)
+- [Jest Docs](https://jestjs.io/docs/getting-started)
+- [React Testing Library](https://testing-library.com/docs/)
