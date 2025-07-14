@@ -1,8 +1,11 @@
 # Standards, Architecture et Bonnes Pratiques — Guide Technique Next.js
 
 ## Table des Matières
+- [Introduction](#introduction)
+- [Schéma Global du Projet](#schéma-global-du-projet)
 - [Configuration de l'Environnement](#configuration-de-lenvironnement)
 - [Architecture du Projet](#architecture-du-projet)
+  - [Détail des Dossiers Clés](#détail-des-dossiers-clés)
 - [Standards de Code](#standards-de-code)
 - [Composants React](#composants-react)
 - [Gestion d'État et Data Fetching](#gestion-détat-et-data-fetching)
@@ -19,20 +22,71 @@
 
 ---
 
+## Introduction
+
+Ce document est la référence centrale pour tous les développeurs du projet. Il vise à garantir la qualité, la performance et la maintenabilité du code, en s'appuyant sur la structure réelle du projet.
+
+---
+
+## Schéma Global du Projet
+
+```
+/workspace
+├── app
+│   └── [locale]
+│       ├── (protected)
+│       │   ├── dashboard/
+│       │   ├── users/
+│       │   ├── menu/
+│       │   ├── ...
+│       ├── auth/
+│       ├── error.tsx
+│       ├── layout.tsx
+│       ├── not-found.tsx
+│       ├── page.tsx
+│       └── [...not-found]/
+├── components
+│   ├── ui/
+│   ├── form/
+│   ├── partials/
+│   ├── blocks/
+│   ├── users/
+│   ├── ...
+├── features
+│   └── menu/
+│       ├── filters/
+│       ├── queries/
+│       ├── types/
+│       ├── validations/
+├── hooks/
+├── lib/
+├── providers/
+├── types/
+├── config/
+├── public/
+├── styles/
+├── package.json
+├── tailwind.config.ts
+├── tsconfig.json
+└── ...
+```
+
+---
+
 ## Configuration de l'Environnement
 
 **Objectifs :**
-- Garantir un environnement homogène et reproductible pour tous les développeurs.
-- Faciliter l'onboarding et la maintenance.
+- Environnement homogène et reproductible.
+- Onboarding rapide.
 
-**Règles à suivre :**
-- Utiliser Node.js LTS (v18+ recommandé).
-- Gérer les dépendances avec `pnpm` (recommandé) ou `yarn`.
-- Versionner un fichier `.env.example` exhaustif.
-- Utiliser `nvm`, `asdf` ou `Volta` pour la gestion des versions Node.
-- Documenter les scripts utiles dans le `package.json`.
+**Règles :**
+- Node.js LTS (v18+ recommandé).
+- pnpm (recommandé) pour la gestion des dépendances.
+- `.env.example` exhaustif et synchronisé.
+- Utilisation de `nvm`, `asdf` ou `Volta`.
+- Scripts documentés dans `package.json`.
 
-**Exemple de setup :**
+**Exemple :**
 ```bash
 nvm use 18
 pnpm install
@@ -40,140 +94,126 @@ cp .env.example .env.local
 pnpm dev
 ```
 
-**Erreurs fréquentes à éviter :**
-- Installer des dépendances avec un gestionnaire différent de celui du projet.
-- Oublier de mettre à jour `.env.example` lors de l'ajout de variables.
-- Ne pas documenter les scripts personnalisés.
-
 **Outils recommandés :**
 - [nvm](https://github.com/nvm-sh/nvm), [asdf](https://asdf-vm.com/), [Volta](https://volta.sh/)
+
+**Erreurs à éviter :**
+- Installer des dépendances avec un autre gestionnaire.
+- Oublier de mettre à jour `.env.example`.
 
 ---
 
 ## Architecture du Projet
 
 **Objectifs :**
-- Structurer le code pour la lisibilité, la scalabilité et la maintenabilité.
-- Favoriser l’architecture modulaire et la séparation des responsabilités.
+- Scalabilité, modularité, séparation claire des responsabilités.
 
-**Règles à suivre :**
-- Utiliser l’App Router (`/app`) de Next.js 13+.
-- Organiser le code par fonctionnalité (feature-first) et non par type de fichier.
-- Centraliser les composants réutilisables dans `/components`.
-- Placer la logique métier dans `/lib` ou `/services`.
-- Isoler les hooks dans `/hooks`.
-- Utiliser `/types` pour les types globaux.
-- `/public` pour les assets statiques.
-- `/styles` pour les fichiers Tailwind et CSS globaux.
+### Détail des Dossiers Clés
 
-**Schéma de structure recommandée :**
-```
-/app
-  /(public)
-    /home
-    /about
-  /(protected)
-    /dashboard
-    /settings
-  /api
-    /auth
-    /user
-/components
-  /ui
-  /layout
-  /shared
-/features
-  /user
-    user.api.ts
-    user.slice.ts
-    user.types.ts
-  /product
-/hooks
-/lib
-/services
-/types
-/public
-/styles
-```
+#### `/app` (App Router, pages, layouts, i18n)
+- **Gestion des locales** : `[locale]` (ex : `fr`, `en`, etc.)
+- **Routes protégées** : `(protected)` (ex : `/dashboard`, `/users`, `/menu`)
+- **Pages d’authentification** : `/auth`
+- **Gestion des erreurs** : `error.tsx`, `not-found.tsx`
+- **Layouts** : `layout.tsx` (par locale ou global)
+- **API routes** : `/app/api/`
 
-**Conventions de nommage :**
-- Dossiers : kebab-case (`user-profile`)
-- Fichiers : camelCase pour les hooks (`useUser.ts`), PascalCase pour les composants (`UserCard.tsx`)
-- Types : PascalCase (`User`, `ProductList`)
+#### `/components` (UI, Partials, Blocks, Domaines)
+- **/ui** : Composants atomiques et réutilisables (ex : `button.tsx`, `card.tsx`, `input.tsx`)
+- **/form** : Composants de formulaire avancés
+- **/partials** : Header, sidebar, footer, navigation, etc.
+- **/blocks** : Sections de page ou composants de structure
+- **/users, /ecommarce, ...** : Composants spécifiques à un domaine métier
 
-**Patterns recommandés :**
-- **Feature-first** : chaque fonctionnalité regroupe ses composants, hooks, slices, types, tests.
-- **Domain-driven** : pour les projets complexes, séparer par domaine métier.
-- **Provider Pattern** : pour la gestion d’état globale/contextuelle.
+#### `/features` (Feature-First, logique métier)
+- **Organisation par feature** : chaque dossier = une fonctionnalité métier
+- **Sous-dossiers** :
+  - `filters/` : gestion des filtres
+  - `queries/` : requêtes et hooks de data fetching
+  - `types/` : types TypeScript spécifiques à la feature
+  - `validations/` : schémas de validation (Zod)
+- **Exemple** :
+  - `features/menu/queries/useMenuList.ts`
+  - `features/menu/types/menu.ts`
+  - `features/menu/validations/menuSchema.ts`
 
-**Erreurs fréquentes à éviter :**
-- Mélanger logique métier et UI dans les composants.
-- Fichiers trop volumineux (>200 lignes).
-- Dossiers fourre-tout (`utils`, `helpers` non spécifiques).
+#### `/hooks` (Hooks personnalisés)
+- Centralisation des hooks custom (ex : `use-menu-hover.ts`, `use-media-query.ts`)
+- Convention : camelCase, un hook = un fichier
 
-**Outils recommandés :**
-- [Hygen](https://www.hygen.io/) pour générer des templates de fichiers.
-- [Plop.js](https://plopjs.com/) pour automatiser la création de features.
+#### `/lib` (Logique métier, utilitaires, API)
+- Fonctions utilitaires, helpers, logique d’API (`api-http.ts`, `auth.ts`, `menus.ts`)
+- Centralisation des appels API, options de charting, helpers globaux
+
+#### `/providers` (Contextes React globaux)
+- Tous les contextes React (auth, thème, query, layout, etc.)
+- Un provider = un fichier, importé dans le layout principal
+- Ex : `theme-provider.tsx`, `auth.provider.tsx`, `query-provider.tsx`
+
+#### `/types` (Types globaux)
+- Types TypeScript partagés dans tout le projet (`index.ts`)
+
+#### `/config` (Configuration centralisée)
+- Fichiers de configuration du site, thèmes, etc. (`site.ts`, `index.ts`)
+
+#### `/public` (Assets statiques)
+- Images, icônes, fichiers statiques
+
+#### `/styles` (CSS/Tailwind)
+- Fichiers Tailwind, CSS globaux, design tokens
 
 ---
 
 ## Standards de Code
 
 **Objectifs :**
-- Assurer la qualité, la lisibilité et la cohérence du code.
+- Qualité, lisibilité, cohérence.
 
-**Règles à suivre :**
-- Suivre les conventions [Airbnb](https://github.com/airbnb/javascript) adaptées à React.
-- Utiliser TypeScript strict (`strict: true` dans `tsconfig.json`).
-- Linter avec [ESLint](https://eslint.org/) + [Prettier](https://prettier.io/).
-- Nommer les fichiers et dossiers en kebab-case.
-- Pas de code mort, pas de `console.log` en production.
-- Toujours typer explicitement les props, les retours de fonctions et les hooks personnalisés.
+**Règles :**
+- Conventions Airbnb adaptées à React.
+- TypeScript strict (`strict: true` dans `tsconfig.json`).
+- ESLint + Prettier obligatoires.
+- Fichiers/dossiers en kebab-case, composants en PascalCase.
+- Pas de code mort, pas de `console.log` en prod.
+- Typage explicite partout.
 
 **Exemple :**
 ```tsx
 // Mauvais
 function mycomponent() {}
-
 // Bon
 export function MyComponent() {}
 ```
 
-**Erreurs fréquentes à éviter :**
-- Typage `any` non justifié.
-- Fonctions anonymes dans les props.
-- Utilisation de variables globales non typées.
-
 **Outils recommandés :**
 - [ESLint](https://eslint.org/), [Prettier](https://prettier.io/), [TypeScript](https://www.typescriptlang.org/)
+
+**Erreurs à éviter :**
+- Typage `any` non justifié.
+- Fonctions anonymes dans les props.
+- Variables globales non typées.
 
 ---
 
 ## Composants React
 
 **Objectifs :**
-- Créer des composants réutilisables, testables et performants.
+- Réutilisabilité, testabilité, performance.
 
-**Règles à suivre :**
-- Préférer les composants fonctionnels.
-- Utiliser les hooks pour la logique d'état et d'effet.
-- Props typées avec TypeScript.
-- Découper les composants complexes.
-- Documenter les props importantes avec JSDoc.
-- Utiliser la composition plutôt que l’héritage.
-- Préférer les composants "dumb" (UI) et "smart" (container) pour séparer la logique et la présentation.
+**Règles :**
+- Composants fonctionnels uniquement.
+- Hooks pour la logique d’état/effet.
+- Props typées.
+- Découpage des composants complexes.
+- JSDoc pour les props importantes.
+- Composition > héritage.
+- Séparation UI (dumb) / container (smart).
 
-**Exemple avancé :**
+**Exemple :**
 ```tsx
 // components/ui/Button.tsx
 import { ReactNode } from 'react';
-
-type ButtonProps = {
-  children: ReactNode;
-  onClick?: () => void;
-  variant?: 'primary' | 'secondary';
-};
-
+type ButtonProps = { children: ReactNode; onClick?: () => void; variant?: 'primary' | 'secondary' };
 /**
  * Bouton réutilisable avec gestion des variantes
  */
@@ -189,118 +229,106 @@ export function Button({ children, onClick, variant = 'primary' }: ButtonProps) 
 }
 ```
 
-**Erreurs fréquentes à éviter :**
-- Passer trop de props (favoriser la composition).
-- Gérer l'état global dans un composant local.
-- Ne pas documenter les composants complexes.
-
 **Outils recommandés :**
-- [Storybook](https://storybook.js.org/) pour la documentation UI
+- [Storybook](https://storybook.js.org/)
+
+**Erreurs à éviter :**
+- Trop de props (favoriser la composition).
+- État global dans un composant local.
+- Composants non documentés.
 
 ---
 
 ## Gestion d'État et Data Fetching
 
 **Objectifs :**
-- Gérer l'état local et global de façon prévisible et performante.
-- Optimiser le data fetching côté serveur et client.
+- État prévisible, data fetching optimisé.
 
-**Règles à suivre :**
-- Utiliser les hooks natifs (`useState`, `useReducer`, `useContext`) pour l’état local.
-- Pour l'état global ou le cache, préférer [Zustand](https://zustand-demo.pmnd.rs/), [Redux Toolkit](https://redux-toolkit.js.org/) ou [React Query](https://tanstack.com/query/v4).
-- Privilégier le data fetching côté serveur (Server Components, `getServerSideProps`, `getStaticProps`).
-- Utiliser SWR ou React Query pour le fetching côté client.
-- Centraliser les requêtes API dans `/features/featureName/feature.api.ts` ou `/services`.
-- Toujours typer les réponses API et valider les données (ex: [zod](https://zod.dev/)).
+**Règles :**
+- Hooks natifs pour l’état local.
+- Zustand, React Query ou Redux Toolkit pour l’état global/cache.
+- Data fetching côté serveur (Server Components, getServerSideProps, etc.)
+- SWR ou React Query côté client.
+- Centraliser les requêtes dans `/features/feature/queries` ou `/lib`.
+- Typage et validation systématique (Zod).
 
-**Exemple avancé :**
+**Exemple :**
 ```tsx
-// features/user/user.api.ts
+// features/menu/queries/useMenuList.ts
 import { useQuery } from '@tanstack/react-query';
 import { z } from 'zod';
-
-const userSchema = z.object({ id: z.string(), name: z.string() });
-
-export function useUser(userId: string) {
-  return useQuery(['user', userId], async () => {
-    const res = await fetch(`/api/user/${userId}`);
+const menuSchema = z.object({ id: z.string(), name: z.string() });
+export function useMenuList() {
+  return useQuery(['menu'], async () => {
+    const res = await fetch('/api/menu');
     const data = await res.json();
-    return userSchema.parse(data);
+    return menuSchema.array().parse(data);
   });
 }
 ```
 
-**Erreurs fréquentes à éviter :**
-- Dupliquer la logique de fetching.
-- Stocker des données serveur dans l'état local sans synchronisation.
-- Ne pas gérer les erreurs réseau.
-
 **Outils recommandés :**
-- [React Query](https://tanstack.com/query/v4), [SWR](https://swr.vercel.app/), [Zod](https://zod.dev/)
+- [React Query](https://tanstack.com/query/v4), [Zustand](https://zustand-demo.pmnd.rs/), [Zod](https://zod.dev/)
+
+**Erreurs à éviter :**
+- Dupliquer la logique de fetching.
+- Ne pas gérer les erreurs réseau.
+- Stocker des données serveur dans l’état local sans synchronisation.
 
 ---
 
 ## Authentification avec Backend Externe
 
 **Objectifs :**
-- Sécuriser l'accès à l'application et protéger les routes sensibles.
+- Sécurité, protection des routes sensibles.
 
-**Règles à suivre :**
-- Utiliser [NextAuth.js](https://next-auth.js.org/) ou une solution OAuth2 standard.
-- Ne jamais stocker de token sensible côté client (localStorage interdit pour les tokens).
-- Protéger les routes côté serveur (middleware, server actions).
-- Rafraîchir les tokens de façon sécurisée.
-- Centraliser la logique d’authentification dans `/features/auth` ou `/lib/auth.ts`.
+**Règles :**
+- NextAuth.js ou OAuth2 standard.
+- Jamais de token sensible côté client.
+- Protection des routes côté serveur (middleware, server actions).
+- Rafraîchissement sécurisé des tokens.
+- Logique centralisée dans `/lib/auth.ts` ou `/features/auth`.
 
-**Exemple avancé :**
+**Exemple :**
 ```ts
 // app/api/auth/[...nextauth]/route.ts
 import NextAuth from 'next-auth';
 import GitHubProvider from 'next-auth/providers/github';
-
 export const authOptions = {
-  providers: [
-    GitHubProvider({
-      clientId: process.env.GITHUB_CLIENT_ID!,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
-    }),
-  ],
+  providers: [GitHubProvider({ clientId: process.env.GITHUB_CLIENT_ID!, clientSecret: process.env.GITHUB_CLIENT_SECRET! })],
   session: { strategy: 'jwt' },
 };
-
 export default NextAuth(authOptions);
 ```
 
-**Erreurs fréquentes à éviter :**
-- Laisser des endpoints non protégés.
-- Exposer des secrets dans le code source.
-- Ne pas gérer l’expiration des tokens.
-
 **Outils recommandés :**
 - [NextAuth.js](https://next-auth.js.org/), [JWT.io](https://jwt.io/)
+
+**Erreurs à éviter :**
+- Endpoints non protégés.
+- Secrets exposés dans le code source.
+- Expiration des tokens non gérée.
 
 ---
 
 ## API Routes & Server Actions
 
 **Objectifs :**
-- Structurer les API internes et les server actions pour la sécurité et la maintenabilité.
+- Sécurité, maintenabilité, validation systématique.
 
-**Règles à suivre :**
-- Utiliser `/app/api` pour les routes REST classiques.
-- Privilégier les Server Actions (App Router) pour la logique côté serveur.
-- Valider systématiquement les entrées utilisateur (ex: [zod](https://zod.dev/)).
-- Gérer les erreurs avec des statuts HTTP explicites.
-- Séparer la logique métier de la gestion de la requête.
+**Règles :**
+- `/app/api` pour les routes REST.
+- Server Actions pour la logique serveur.
+- Validation Zod systématique.
+- Statuts HTTP explicites.
+- Séparation logique métier / gestion requête.
 
-**Exemple avancé :**
+**Exemple :**
 ```ts
 // app/api/user/route.ts
 import { NextResponse } from 'next/server';
 import { z } from 'zod';
-
 const userSchema = z.object({ id: z.string() });
-
 export async function POST(req: Request) {
   const body = await req.json();
   const parsed = userSchema.safeParse(body);
@@ -312,29 +340,29 @@ export async function POST(req: Request) {
 }
 ```
 
-**Erreurs fréquentes à éviter :**
-- Ne pas gérer les erreurs ou les statuts HTTP.
-- Mélanger logique métier et gestion de la requête.
-- Ne pas valider les entrées utilisateur.
-
 **Outils recommandés :**
 - [zod](https://zod.dev/), [Next.js Middleware](https://nextjs.org/docs/app/building-your-application/routing/middleware)
+
+**Erreurs à éviter :**
+- Pas de validation d’entrée.
+- Mélange logique métier / gestion requête.
+- Statuts HTTP absents.
 
 ---
 
 ## Styling avec Tailwind CSS 4
 
 **Objectifs :**
-- Garantir un design cohérent, responsive et maintenable.
+- Design cohérent, responsive, maintenable.
 
-**Règles à suivre :**
-- Utiliser exclusivement Tailwind CSS pour le styling.
-- Centraliser les couleurs et thèmes dans `tailwind.config.js`.
-- Utiliser les classes utilitaires, éviter le CSS custom sauf cas exceptionnel.
-- Préférer les composants UI atomiques et les design tokens.
-- Documenter les patterns de design dans un fichier `/styles/README.md`.
+**Règles :**
+- Tailwind CSS exclusif.
+- Thèmes/couleurs centralisés dans `tailwind.config.ts`.
+- Classes utilitaires, pas de CSS custom sauf exception.
+- Composants UI atomiques.
+- Patterns de design documentés dans `/styles/README.md`.
 
-**Exemple avancé :**
+**Exemple :**
 ```tsx
 // components/ui/Card.tsx
 export function Card({ children }: { children: React.ReactNode }) {
@@ -346,63 +374,62 @@ export function Card({ children }: { children: React.ReactNode }) {
 }
 ```
 
-**Erreurs fréquentes à éviter :**
-- Surcharger les fichiers CSS globaux.
-- Utiliser des classes non définies dans le design system.
-- Ne pas respecter la cohérence des espacements et couleurs.
-
 **Outils recommandés :**
 - [Tailwind CSS](https://tailwindcss.com/), [Headless UI](https://headlessui.com/), [daisyUI](https://daisyui.com/)
+
+**Erreurs à éviter :**
+- Surcharge de CSS global.
+- Classes non définies dans le design system.
+- Incohérence d’espacement/couleurs.
 
 ---
 
 ## Performance
 
 **Objectifs :**
-- Optimiser le temps de chargement et la fluidité de l'application.
+- Rapidité, fluidité, optimisation bundle.
 
-**Règles à suivre :**
-- Utiliser l'Image Optimization de Next.js (`next/image`).
-- Charger les composants lourds en lazy loading (`dynamic import`).
-- Privilégier le SSR/SSG pour les pages critiques.
-- Analyser les bundles avec [next-bundle-analyzer](https://github.com/vercel/next.js/tree/canary/packages/next-bundle-analyzer).
-- Utiliser le cache HTTP et les headers appropriés.
-- Éviter les dépendances inutiles et le surpoids des bundles.
+**Règles :**
+- `next/image` pour les images.
+- Lazy loading (`dynamic import`) pour les composants lourds.
+- SSR/SSG pour les pages critiques.
+- Analyse bundle avec `next-bundle-analyzer`.
+- Cache HTTP et headers adaptés.
+- Pas de dépendances inutiles.
 
-**Exemple avancé :**
+**Exemple :**
 ```tsx
 import dynamic from 'next/dynamic';
 const HeavyComponent = dynamic(() => import('../components/HeavyComponent'), { ssr: false });
 ```
 
-**Erreurs fréquentes à éviter :**
-- Importer des librairies inutilisées.
-- Ne pas optimiser les images.
-- Ne pas profiler les performances en production.
-
 **Outils recommandés :**
 - [next/image](https://nextjs.org/docs/app/api-reference/components/image), [next-bundle-analyzer](https://github.com/vercel/next.js/tree/canary/packages/next-bundle-analyzer), [Lighthouse](https://developers.google.com/web/tools/lighthouse)
+
+**Erreurs à éviter :**
+- Librairies inutilisées.
+- Images non optimisées.
+- Pas de profiling en prod.
 
 ---
 
 ## Tests
 
 **Objectifs :**
-- Garantir la fiabilité et la non-régression du code.
+- Fiabilité, non-régression.
 
-**Règles à suivre :**
-- Écrire des tests unitaires et d'intégration pour chaque feature.
-- Utiliser [Jest](https://jestjs.io/) et [React Testing Library](https://testing-library.com/).
-- Couvrir les cas critiques et les erreurs.
-- Automatiser les tests dans le pipeline CI.
-- Placer les tests à côté du code testé (`Button.test.tsx` dans le même dossier que `Button.tsx`).
+**Règles :**
+- Tests unitaires/intégration pour chaque feature.
+- Jest + React Testing Library.
+- Couvrir cas critiques/erreurs.
+- Tests automatisés en CI.
+- Tests à côté du code testé.
 
-**Exemple avancé :**
+**Exemple :**
 ```tsx
 // components/ui/Button.test.tsx
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Button } from './Button';
-
 test('affiche le label et gère le clic', () => {
   const handleClick = jest.fn();
   render(<Button onClick={handleClick}>OK</Button>);
@@ -412,79 +439,81 @@ test('affiche le label et gère le clic', () => {
 });
 ```
 
-**Erreurs fréquentes à éviter :**
-- Tester l'implémentation au lieu du comportement.
-- Oublier de mocker les appels externes.
-- Ne pas couvrir les cas d’erreur.
-
 **Outils recommandés :**
-- [Jest](https://jestjs.io/), [React Testing Library](https://testing-library.com/), [Cypress](https://www.cypress.io/) pour les tests end-to-end
+- [Jest](https://jestjs.io/), [React Testing Library](https://testing-library.com/), [Cypress](https://www.cypress.io/)
+
+**Erreurs à éviter :**
+- Tester l’implémentation au lieu du comportement.
+- Oublier de mocker les appels externes.
+- Cas d’erreur non couverts.
 
 ---
 
 ## Outils de Développement
 
 **Objectifs :**
-- Améliorer la productivité et la qualité du code.
+- Productivité, qualité, cohérence équipe.
 
-**Règles à suivre :**
-- Utiliser un IDE configuré (VSCode + extensions recommandées).
-- Activer le formatage et le linting à la sauvegarde.
-- Utiliser les devtools Next.js et React.
-- Documenter les extensions et outils dans le README.
+**Règles :**
+- VSCode + extensions recommandées.
+- Formatage/linting à la sauvegarde.
+- Devtools Next.js/React.
+- Extensions documentées dans le README.
 
 **Exemple :**
-- Extensions : ESLint, Prettier, Tailwind CSS IntelliSense, GitLens, VSCode Icons
-
-**Erreurs fréquentes à éviter :**
-- Désactiver les outils de qualité.
-- Ne pas synchroniser la configuration de l'équipe.
+- ESLint, Prettier, Tailwind CSS IntelliSense, GitLens, VSCode Icons
 
 **Outils recommandés :**
 - [VSCode](https://code.visualstudio.com/), [GitLens](https://gitlens.amod.io/), [EditorConfig](https://editorconfig.org/)
+
+**Erreurs à éviter :**
+- Outils de qualité désactivés.
+- Config non synchronisée.
 
 ---
 
 ## Git Workflow
 
 **Objectifs :**
-- Assurer un historique propre et des livraisons fiables.
+- Historique propre, livraison fiable.
 
-**Règles à suivre :**
-- Travailler en feature branch (`feature/`, `fix/`, `chore/`).
-- Rebase avant merge (`git pull --rebase`).
-- Rédiger des messages de commit clairs et concis (Conventional Commits).
-- Pull Request obligatoire, review par un pair.
-- Un commit = une intention claire.
+**Règles :**
+- Feature branch (`feature/`, `fix/`, `chore/`).
+- Rebase avant merge.
+- Conventional Commits.
+- PR obligatoire, review par un pair.
+- Un commit = une intention.
 
 **Exemple :**
 ```bash
-git checkout -b feature/auth-oauth
+git checkout -b feature/menu-filter
 # ... travail ...
 git add .
-git commit -m "feat(auth): ajout de l'authentification OAuth2"
-git push origin feature/auth-oauth
+git commit -m "feat(menu): ajout du filtre de menu"
+git push origin feature/menu-filter
 ```
-
-**Erreurs fréquentes à éviter :**
-- Committer sur `main` directement.
-- Messages de commit vagues ou non conventionnels.
-- Squash non justifié de l’historique.
 
 **Outils recommandés :**
 - [Conventional Commits](https://www.conventionalcommits.org/), [GitHub CLI](https://cli.github.com/), [Husky](https://typicode.github.io/husky/)
+
+**Erreurs à éviter :**
+- Commit sur `main`.
+- Messages vagues/non conventionnels.
+- Squash non justifié.
 
 ---
 
 ## Checklist Avant Pull Request
 
-- [ ] Code relu et testé localement
-- [ ] Pas de console.log ni de code mort
-- [ ] Lint et tests passés
-- [ ] Documentation mise à jour
-- [ ] Rebase sur la branche principale
+- [ ] Feature isolée dans `/features`
+- [ ] Composant UI documenté dans `/components/ui`
+- [ ] Provider ajouté dans `/providers` si besoin
+- [ ] Typage strict et validation Zod
+- [ ] Tests présents et passants
+- [ ] Lint/format OK
+- [ ] Documentation à jour
 - [ ] Description claire de la PR
-- [ ] Screenshots ou vidéos pour les changements UI
+- [ ] Screenshots/vidéos pour changements UI
 
 ---
 
