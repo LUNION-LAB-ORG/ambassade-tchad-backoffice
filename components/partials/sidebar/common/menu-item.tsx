@@ -57,14 +57,15 @@ const MenuItem = ({ href, label, icon, active, id, collapsed }: MenuItemProps) =
                 variant={active ? "default" : "ghost"}
                 color={active ? "default" : "secondary"}
                 fullWidth
-                className={cn('', {
+                className={cn('transition-all duration-200', {
                     'justify-start text-sm font-medium capitalize group hover:md:px-8 h-auto py-3 md:px-3 px-3': !collapsed,
-                    'hover:ring-transparent hover:ring-offset-0': !active
+                    'hover:ring-transparent hover:ring-offset-0': !active,
+                    // White text and icons for inactive items in both modes
+                    'text-white hover:text-white hover:bg-embassy-blue-800/30': !active
                 })}
                 asChild
                 size={collapsed ? "icon" : "default"}
             >
-
 
                 <Link href={href} onClick={(e) => {
                     e.stopPropagation();
@@ -72,14 +73,15 @@ const MenuItem = ({ href, label, icon, active, id, collapsed }: MenuItemProps) =
                     {!collapsed && (
                         <GripVertical
 
-                            {...attributes} {...listeners} className={cn('inset-t-0 absolute me-1 h-5 w-5 ltr:-translate-x-6 rtl:translate-x-6 invisible opacity-0 group-hover:opacity-100 transition-all group-hover:visible ltr:group-hover:-translate-x-5 rtl:group-hover:translate-x-5', {
+                            {...attributes} {...listeners} className={cn('inset-t-0 absolute me-1 h-5 w-5 ltr:-translate-x-6 rtl:translate-x-6 invisible opacity-0 group-hover:opacity-100 transition-all group-hover:visible ltr:group-hover:-translate-x-5 rtl:group-hover:translate-x-5 text-white', {
 
                             })} />
 
 
                     )}
-                    <Icon icon={icon} className={cn('h-5 w-5 ', {
-                        'me-2': !collapsed
+                    <Icon icon={icon} className={cn('h-5 w-5 transition-colors', {
+                        'me-2': !collapsed,
+                        'text-white': !active
                     })} />
                     {!collapsed && (
                         <p
@@ -103,12 +105,17 @@ const MenuItem = ({ href, label, icon, active, id, collapsed }: MenuItemProps) =
                 variant={active ? "default" : "ghost"}
                 fullWidth
                 color={active ? "default" : "secondary"}
-                className="flex-col h-auto py-1.5 px-3.5 capitalize font-semibold"
+                className={cn("flex-col h-auto py-1.5 px-3.5 capitalize font-semibold transition-all duration-200", {
+                    // White text and icons for inactive items in both modes
+                    'text-white hover:text-white hover:bg-embassy-blue-800/30': !active
+                })}
                 asChild
 
             >
                 <Link href={href}>
-                    <Icon icon={icon} className={cn('h-6 w-6 mb-1 ')} />
+                    <Icon icon={icon} className={cn('h-6 w-6 mb-1 transition-colors', {
+                        'text-white': !active
+                    })} />
 
                     <p
                         className={cn(
@@ -128,16 +135,19 @@ const MenuItem = ({ href, label, icon, active, id, collapsed }: MenuItemProps) =
             variant={active ? "default" : "ghost"}
             fullWidth
             color={active ? "default" : "secondary"}
-            className={cn('', {
+            className={cn('transition-all duration-200', {
                 'justify-start text-sm font-medium capitalize h-auto py-3 md:px-3 px-3': !collapsed || hovered,
-                'hover:ring-transparent hover:ring-offset-0': !active
+                'hover:ring-transparent hover:ring-offset-0': !active,
+                // White text and icons for inactive items in both modes
+                'text-white hover:text-white hover:bg-embassy-blue-800/30': !active
             })}
             asChild
             size={(collapsed && !hovered) ? "icon" : "default"}
         >
             <Link href={href}>
-                <Icon icon={icon} className={cn('h-5 w-5 ', {
-                    'me-2': !collapsed || hovered
+                <Icon icon={icon} className={cn('h-5 w-5 transition-colors', {
+                    'me-2': !collapsed || hovered,
+                    'text-white': !active
                 })} />
                 {(!collapsed || hovered) && (
                     <p

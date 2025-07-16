@@ -116,14 +116,18 @@ export function CollapseMenuButton({
                         variant={active ? "default" : "ghost"}
                         fullWidth
                         color={active ? 'default' : 'secondary'}
-                        className={cn('flex-col h-auto py-1.5 px-3.5 capitalize font-semibold ring-offset-sidebar', {
-                            'data-[state=open]:bg-secondary': !active
+                        className={cn('flex-col h-auto py-1.5 px-3.5 capitalize font-semibold ring-offset-sidebar transition-all duration-200', {
+                            'data-[state=open]:bg-secondary': !active,
+                            // White text and icons for inactive items in both modes
+                            'text-white hover:text-white hover:bg-embassy-blue-800/30': !active
                         })}
 
 
                     >
 
-                        <Icon icon={icon} className={cn('h-6 w-6 mb-1 ')} />
+                        <Icon icon={icon} className={cn('h-6 w-6 mb-1 transition-colors', {
+                            'text-white': !active
+                        })} />
 
                         <p
                             className={cn(
@@ -146,8 +150,10 @@ export function CollapseMenuButton({
                             variant="ghost"
                             fullWidth
                             size='sm'
-                            className={cn('w-full justify-center text-center p-0  h-auto  hover:bg-transparent hover:text-default capitalize text-xs font-normal mb-2 first:mt-4 last:mb-0', {
-                                'font-semibold': active
+                            className={cn('w-full justify-center text-center p-0  h-auto hover:bg-transparent hover:text-default capitalize text-xs font-normal mb-2 first:mt-4 last:mb-0 transition-all duration-200', {
+                                'font-semibold': active,
+                                // White text for inactive items in both modes
+                                'text-white hover:text-white': !active
                             })}
                             asChild
                         >
@@ -180,8 +186,10 @@ export function CollapseMenuButton({
                         ref={setNodeRef}
                         variant={active ? "default" : "ghost"}
                         color='secondary'
-                        className={cn('justify-start capitalize group  h-auto py-3 md:px-3 px-3   ring-offset-sidebar group-data-[state=open]:bg-secondary ', {
-                            'hover:md:ps-8': config.sidebar === 'draggable' && isDesktop
+                        className={cn('justify-start capitalize group h-auto py-3 md:px-3 px-3 ring-offset-sidebar group-data-[state=open]:bg-secondary transition-all duration-200', {
+                            'hover:md:ps-8': config.sidebar === 'draggable' && isDesktop,
+                            // White text and icons for inactive items in both modes
+                            'text-white hover:text-white hover:bg-embassy-blue-800/30': !active
                         })}
                         fullWidth
                     >
@@ -191,12 +199,14 @@ export function CollapseMenuButton({
                                 {config.sidebar === 'draggable' && isDesktop && (
                                     <GripVertical
 
-                                        {...attributes} {...listeners} className={cn('inset-t-0 absolute me-1 h-5 w-5 ltr:-translate-x-6 rtl:translate-x-6 invisible opacity-0 group-hover:opacity-100 transition-all group-hover:visible ltr:group-hover:-translate-x-5 rtl:group-hover:translate-x-5 ', {
+                                        {...attributes} {...listeners} className={cn('inset-t-0 absolute me-1 h-5 w-5 ltr:-translate-x-6 rtl:translate-x-6 invisible opacity-0 group-hover:opacity-100 transition-all group-hover:visible ltr:group-hover:-translate-x-5 rtl:group-hover:translate-x-5 text-white', {
 
                                         })} />
                                 )}
                                 <span className="me-4">
-                                    <Icon icon={icon} className="h-5 w-5" />
+                                    <Icon icon={icon} className={cn('h-5 w-5 transition-colors', {
+                                        'text-white': !active
+                                    })} />
                                 </span>
                                 <p
                                     className={cn(
@@ -211,11 +221,11 @@ export function CollapseMenuButton({
                             </div>
                             <div
                                 className={cn(
-                                    "whitespace-nowrap inline-flex items-center justify-center rounded-full h-5 w-5 bg-menu-arrow text-menu-menu-foreground  group-hover:bg-menu-arrow-active transition-all duration-300 ",
+                                    "whitespace-nowrap inline-flex items-center justify-center rounded-full h-5 w-5 bg-embassy-blue-100 text-embassy-blue-600 group-hover:bg-embassy-blue-200 dark:bg-embassy-blue-800/40 dark:text-white dark:group-hover:bg-embassy-blue-700/60 transition-all duration-300",
                                     !collapsed || hovered
                                         ? "translate-x-0 opacity-100"
                                         : "-translate-x-96 opacity-0", {
-                                    'bg-menu-arrow-active': active
+                                    'bg-embassy-blue-200 dark:bg-embassy-blue-700/60': active
                                 }
                                 )}
                             >
@@ -237,9 +247,10 @@ export function CollapseMenuButton({
                             key={index}
                             color='secondary'
                             variant="ghost"
-                            className={cn('w-full  justify-start h-auto hover:bg-transparent hover:ring-offset-0 capitalize text-sm font-normal mb-2 last:mb-0 first:mt-3 md:px-5 px-5', {
+                            className={cn('w-full justify-start h-auto hover:bg-transparent hover:ring-offset-0 capitalize text-sm font-normal mb-2 last:mb-0 first:mt-3 md:px-5 px-5 transition-all duration-200', {
                                 'font-medium': active,
-                                'dark:opacity-80': !active,
+                                // White text for inactive items in both modes
+                                'text-white hover:text-white': !active,
                             })}
                             asChild
                         >
@@ -247,9 +258,9 @@ export function CollapseMenuButton({
 
                                 <span
                                     className={cn(
-                                        "h-1.5 w-1.5 me-3 rounded-full  transition-all duration-150 ring-1    ring-default-600 ",
+                                        "h-1.5 w-1.5 me-3 rounded-full transition-all duration-150 ring-1 ring-white",
                                         {
-                                            "ring-4 bg-default ring-opacity-30 ring-default": active,
+                                            "ring-4 bg-white ring-opacity-30 ring-white": active,
 
                                         }
                                     )}
@@ -291,54 +302,58 @@ export function CollapseMenuButton({
                             <Button
                                 variant={active ? "default" : "ghost"}
                                 color='secondary'
-                                className="w-full justify-center"
+                                className={cn("w-full justify-center transition-all duration-200", {
+                                    'text-white hover:text-white hover:bg-embassy-blue-800/30': !active
+                                })}
                                 size="icon"
                             >
 
-                                <Icon icon={icon} className="h-5 w-5" />
+                                <Icon icon={icon} className={cn('h-5 w-5 transition-colors', {
+                                    'text-white': !active
+                                })} />
 
                             </Button>
                         </DropdownMenuTrigger>
                     </TooltipTrigger>
-                    <TooltipContent side="right" align="start" alignOffset={2}>
-                        {label}
+                    <TooltipContent side="right" align="start" alignOffset={2} className="bg-white/95 backdrop-blur-sm border-embassy-blue-200 dark:bg-slate-800/95 dark:border-embassy-blue-600/30">
+                        <span className="text-embassy-blue-800 dark:text-white">{label}</span>
                     </TooltipContent>
                 </Tooltip>
             </TooltipProvider>
-            <DropdownMenuContent side="right" sideOffset={20} align="start" className={` border-sidebar space-y-1.5 ${sidebarTheme}`} >
-                <DropdownMenuLabel className="max-w-[190px] truncate">
+            <DropdownMenuContent side="right" sideOffset={20} align="start" className={`bg-white/95 backdrop-blur-sm border-embassy-blue-200 dark:bg-slate-800/95 dark:border-embassy-blue-600/30 space-y-1.5 ${sidebarTheme}`} >
+                <DropdownMenuLabel className="max-w-[190px] truncate text-embassy-blue-800 dark:text-white">
                     {label}
                 </DropdownMenuLabel>
-                <DropdownMenuSeparator className='bg-default-300' />
+                <DropdownMenuSeparator className='bg-embassy-blue-200 dark:bg-embassy-blue-600/30' />
                 <DropdownMenuGroup>
 
 
                     {submenus.map(({ href, label, icon, active, children }, index) => (
                         children?.length === 0 ? (
-                            <DropdownMenuItem key={index} asChild className={cn('focus:bg-secondary', {
-                                'bg-secondary text-secondary-foreground ': active
+                            <DropdownMenuItem key={index} asChild className={cn('focus:bg-embassy-blue-50 dark:focus:bg-embassy-blue-800/30 text-white', {
+                                'bg-embassy-blue-100 text-embassy-blue-800 dark:bg-embassy-blue-800/40 dark:text-white': active
                             })}>
                                 <Link className="cursor-pointer flex-flex gap-3" href={href}>
                                     {icon && (
-                                        <Icon icon={icon} className=' h-4 w-4' />
+                                        <Icon icon={icon} className='h-4 w-4' />
                                     )}
                                     <p className="max-w-[180px] truncate">{label} </p>
                                 </Link>
                             </DropdownMenuItem>
                         ) : (
                             <DropdownMenuSub key={index}>
-                                <DropdownMenuSubTrigger>
+                                <DropdownMenuSubTrigger className="text-white">
                                     <span>{label}</span>
                                 </DropdownMenuSubTrigger>
                                 <DropdownMenuPortal>
-                                    <DropdownMenuSubContent>
+                                    <DropdownMenuSubContent className="bg-white/95 backdrop-blur-sm border-embassy-blue-200 dark:bg-slate-800/95 dark:border-embassy-blue-600/30">
                                         <ScrollArea className='h-[200px]'>
 
 
                                             {children?.map(({ href, label, active }, index) => (
 
 
-                                                <DropdownMenuItem key={`nested-index-${index}`}>
+                                                <DropdownMenuItem key={`nested-index-${index}`} className="text-white">
                                                     <Link href={href}>{label}</Link>
                                                 </DropdownMenuItem>
                                             ))}

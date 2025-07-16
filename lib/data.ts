@@ -1,12 +1,19 @@
 // user data 
 const users = [
   {
-    name: "dashcode",
+    id: 1,
+    name: "ambassade du tchad",
     email: "dashcode@codeshaper.net",
     password: "password",
     image: '/images/users/user-1.jpg',
   },
-  
+  {
+    id: 2,
+    name: "dashtail",
+    email: "dashtail@codeshaper.net", 
+    password: "password",
+    image: '/images/avatar/avatar-3.png',
+  }
 ]
 
 export type User = (typeof users)[number]

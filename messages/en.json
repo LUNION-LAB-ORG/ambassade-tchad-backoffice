@@ -123,6 +123,218 @@
     "add_to_cart": "Add to Cart"
     
   },
+  "contenu": {
+    "gestionActualite": {
+      "title": "News Management",
+      "total_brouillon": "Total Draft News",
+      "total_publie": "Total Published News",
+      "total_actualite": "Total News",
+      "create_article": "Create Article",
+      "edit_article": "Edit Article",
+      "delete_article": "Delete Article",
+      "view_article": "View Article",
+      "search_placeholder": "Search by title or description...",
+      "no_results": "No news found",
+      "status": {
+        "brouillon": "Draft",
+        "publie": "Published",
+        "archive": "Archived"
+      },
+      "category": {
+        "diplomatie": "Diplomacy",
+        "culture": "Culture",
+        "economie": "Economy",
+        "societe": "Society",
+        "education": "Education"
+      },
+      "fields": {
+        "titre": "Title",
+        "description": "Description",
+        "contenu": "Content",
+        "image": "Featured Image",
+        "status": "Status",
+        "categorie": "Category",
+        "tags": "Tags",
+        "priorite": "Priority",
+        "langue": "Language",
+        "metaTitre": "Meta Title",
+        "metaDescription": "Meta Description",
+        "datePublication": "Publication Date",
+        "vues": "View Count"
+      },
+      "priority": {
+        "normale": "Normal",
+        "importante": "Important",
+        "urgente": "Urgent"
+      }
+    },
+    "gestionEvenement": {
+      "title": "Event Management",
+      "total_brouillon": "Total Draft Events",
+      "total_publie": "Total Published Events",
+      "total_evenement": "Total Events",
+      "create_event": "Create Event",
+      "edit_event": "Edit Event",
+      "delete_event": "Delete Event",
+      "view_event": "View Event",
+      "search_placeholder": "Search by title, description or location...",
+      "no_results": "No events found",
+      "status": {
+        "brouillon": "Draft",
+        "publie": "Published",
+        "annule": "Cancelled",
+        "archive": "Archived"
+      },
+      "type": {
+        "conference": "Conference",
+        "seminaire": "Seminar",
+        "atelier": "Workshop",
+        "ceremonie": "Ceremony",
+        "reception": "Reception",
+        "formation": "Training",
+        "autre": "Other"
+      },
+      "fields": {
+        "titre": "Title",
+        "description": "Description",
+        "contenu": "Content",
+        "dateDebut": "Start Date",
+        "dateFin": "End Date",
+        "heureDebut": "Start Time",
+        "heureFin": "End Time",
+        "lieu": "Location",
+        "adresse": "Address",
+        "image": "Featured Image",
+        "status": "Status",
+        "categorie": "Category",
+        "tags": "Tags",
+        "priorite": "Priority",
+        "langue": "Language",
+        "metaTitre": "Meta Title",
+        "metaDescription": "Meta Description",
+        "capaciteMax": "Maximum Capacity",
+        "prixEntree": "Entry Price",
+        "gratuit": "Free",
+        "inscriptionRequise": "Registration Required",
+        "lienInscription": "Registration Link",
+        "typeEvenement": "Event Type",
+        "contact": "Contact"
+      },
+      "priority": {
+        "normale": "Normal",
+        "importante": "Important",
+        "urgente": "Urgent"
+      }
+    },
+    "gestionGalerie": {
+      "photo": {
+        "title": "Photo Gallery Management",
+        "total_brouillon": "Total Draft Photos",
+        "total_publie": "Total Published Photos",
+        "total_photo": "Total Photos",
+        "create_photo": "Add Photo",
+        "edit_photo": "Edit Photo",
+        "delete_photo": "Delete Photo",
+        "view_photo": "View Photo",
+        "search_placeholder": "Search by title, description or tags...",
+        "no_results": "No photos found",
+        "status": {
+          "brouillon": "Draft",
+          "publie": "Published",
+          "archive": "Archived"
+        },
+        "category": {
+          "evenement": "Event",
+          "reception": "Reception",
+          "conference": "Conference",
+          "culture": "Culture",
+          "diplomatie": "Diplomacy"
+        },
+        "fields": {
+          "titre": "Title",
+          "description": "Description",
+          "image": "Image",
+          "status": "Status",
+          "categorie": "Category",
+          "tags": "Tags",
+          "dateAjout": "Date Added",
+          "taille": "File Size",
+          "resolution": "Resolution"
+        }
+      },
+      "videos": {
+        "title": "Video Gallery Management",
+        "total_brouillon": "Total Draft Videos",
+        "total_publie": "Total Published Videos",
+        "total_video": "Total Videos",
+        "create_video": "Add Video",
+        "edit_video": "Edit Video",
+        "delete_video": "Delete Video",
+        "view_video": "View Video",
+        "search_placeholder": "Search by title, description or tags...",
+        "no_results": "No videos found",
+        "status": {
+          "brouillon": "Draft",
+          "publie": "Published",
+          "archive": "Archived"
+        },
+        "category": {
+          "evenement": "Event",
+          "interview": "Interview",
+          "presentation": "Presentation",
+          "culture": "Culture",
+          "documentaire": "Documentary"
+        },
+        "fields": {
+          "titre": "Title",
+          "description": "Description",
+          "url": "Video URL",
+          "thumbnail": "Thumbnail",
+          "status": "Status",
+          "categorie": "Category",
+          "tags": "Tags",
+          "dateAjout": "Date Added",
+          "duree": "Duration",
+          "qualite": "Quality"
+        }
+      }
+    },
+    "gestionService": {
+      "title": "Service Management",
+      "total_service": "Total Services",
+      "total_actif": "Active Services",
+      "total_inactif": "Inactive Services",
+      "create_service": "Create Service",
+      "edit_service": "Edit Service",
+      "delete_service": "Delete Service",
+      "view_service": "View Service",
+      "search_placeholder": "Search by name, description or type...",
+      "no_results": "No services found",
+      "status": {
+        "actif": "Active",
+        "inactif": "Inactive",
+        "maintenance": "Under Maintenance"
+      },
+      "type": {
+        "consulaire": "Consular Service",
+        "visa": "Visa",
+        "passeport": "Passport",
+        "authentification": "Authentication",
+        "notariat": "Notarial Service"
+      },
+      "fields": {
+        "nom": "Service Name",
+        "description": "Description",
+        "type": "Service Type",
+        "status": "Status",
+        "tarif": "Fee",
+        "delaiTraitement": "Processing Time",
+        "documentsRequis": "Required Documents",
+        "contact": "Contact Person",
+        "horaires": "Opening Hours"
+      }
+    }
+  },
   "Menu": {
     "dashboard": "Dashboard",
     "analytics": "Analytics",

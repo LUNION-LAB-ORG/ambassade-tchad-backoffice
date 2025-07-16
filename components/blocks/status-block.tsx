@@ -1,9 +1,12 @@
-"use client"
+"use client";
+
 import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
 import { Card, CardContent } from "@/components/ui/card";
-const Chart = dynamic(() => import("react-apexcharts"));
 import { useTheme } from "next-themes";
+
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+
 interface StatusBlockProps {
   className?: string;
   icon?: React.ReactNode;
@@ -12,9 +15,8 @@ interface StatusBlockProps {
   series?: number[];
   chartColor?: string;
   iconWrapperClass?: string;
-  chartType?: 'area' | 'bar' | 'line' | 'pie' | 'donut' | 'radialBar'
-  reverse?: boolean
-  opacity?: number
+  chartType?: 'area' | 'bar' | 'line' | 'pie' | 'donut' | 'radialBar';
+  opacity?: number;
 }
 
 const StatusBlock = ({
@@ -26,129 +28,65 @@ const StatusBlock = ({
   chartColor = "#0ce7fa",
   iconWrapperClass,
   chartType = "area",
-  reverse = false,
-  opacity = 0.1
+  opacity = 0.1,
 }: StatusBlockProps) => {
   const { theme: mode } = useTheme();
-  const chartSeries = [
-    {
-      data: series
-    }
-  ];
+
+  const chartSeries = [{ data: series }];
 
   const options: any = {
     chart: {
-      toolbar: {
-        autoSelected: "pan",
-        show: false,
-      },
-      offsetX: 0,
-      offsetY: 0,
-      zoom: {
-        enabled: false,
-      },
-      sparkline: {
-        enabled: true,
-      },
+      toolbar: { show: false },
+      zoom: { enabled: false },
+      sparkline: { enabled: true },
     },
-    plotOptions: {
-      bar: {
-        columnWidth: "60%",
-        barHeight: "100%",
-      },
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    stroke: {
-      curve: "smooth",
-      width: 2,
-    },
+    plotOptions: { bar: { columnWidth: "60%" } },
+    dataLabels: { enabled: false },
+    stroke: { curve: "smooth", width: 2 },
     colors: [chartColor],
-
-    tooltip: {
-      theme: mode === "dark" ? "dark" : "light",
-    },
-
-    grid: {
-      show: false,
-      padding: {
-        left: 0,
-        right: 0,
-      },
-    },
-    yaxis: {
-      show: false,
-    },
-    fill: {
-      type: "solid",
-      opacity: [opacity],
-    },
-    legend: {
-      show: false,
-    },
-    xaxis: {
-      low: 0,
-      offsetX: 0,
-      offsetY: 0,
-      show: false,
-      labels: {
-        low: 0,
-        offsetX: 0,
-        show: false,
-      },
-      axisBorder: {
-        low: 0,
-        offsetX: 0,
-        show: false,
-      }
-    }
+    tooltip: { theme: mode === "dark" ? "dark" : "light" },
+    grid: { show: false },
+    yaxis: { show: false },
+    fill: { type: "solid", opacity: [opacity] },
+    legend: { show: false },
+    xaxis: { show: false },
   };
-  return (
-    <Card className={cn('', className,)}>
-      <CardContent className="p-4">
-        <div className={cn('flex gap-3', {
-          'flex-row-reverse': reverse
-        })}>
-          {
-            icon &&
-            <div className="flex-none">
-              <div
-                className={cn("h-12 w-12 rounded-full flex flex-col items-center justify-center text-2xl bg-default/10", iconWrapperClass)}
-              >
-                {icon}
-              </div>
-            </div>
-          }
 
-          {(title || total) && (
-            <div className="flex-1">
-              {title && (
-                <div className="text-default-600 text-sm font-medium">
-                  {title}
-                </div>
+  return (
+    <Card className={cn("", className)}>
+      <CardContent className="p-4">
+        {/* Top: Icon + Title */}
+        <div className="flex items-center gap-3 mb-4">
+          {icon && (
+            <div
+              className={cn(
+                "h-12 w-12 rounded-full flex items-center justify-center text-2xl bg-default/10",
+                iconWrapperClass
               )}
-              {total && (
-                <div className="text-default-900 text-lg font-medium">
-                  {total}
-                </div>
-              )}
+            >
+              {icon}
             </div>
           )}
-
+          {title && <div className="text-base font-semibold">{title}</div>}
         </div>
-        <div className="ms-auto max-w-[124px]">
-          <Chart
-            options={options}
-            series={chartSeries}
-            type={chartType}
-            height={41}
-            width={124}
-          />
+
+        {/* Bottom: Total + Chart */}
+        <div className="flex items-center justify-between">
+          {total && (
+            <div className="text-2xl font-bold text-blue-700">{total}</div>
+          )}
+          <div className="max-w-[124px]">
+            <Chart
+              options={options}
+              series={chartSeries}
+              type={chartType}
+              height={45}
+              width={124}
+            />
+          </div>
         </div>
       </CardContent>
-    </Card >
-
+    </Card>
   );
 };
 

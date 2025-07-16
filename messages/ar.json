@@ -100,6 +100,192 @@
     "view_less": "عرض أقل",
     "add_to_cart": "أضف إلى السلة"
   },
+  "contenu": {
+    "gestionActualite": {
+      "title": "إدارة الأخبار",
+      "total_brouillon": "إجمالي الأخبار المسودة",
+      "total_publie": "إجمالي الأخبار المنشورة",
+      "total_actualite": "إجمالي الأخبار",
+      "create_article": "إنشاء مقال",
+      "edit_article": "تعديل المقال",
+      "delete_article": "حذف المقال",
+      "view_article": "عرض المقال",
+      "search_placeholder": "البحث بالعنوان أو الوصف...",
+      "no_results": "لم يتم العثور على أخبار",
+      "status": {
+        "brouillon": "مسودة",
+        "publie": "منشور",
+        "archive": "مؤرشف"
+      },
+      "category": {
+        "diplomatie": "الدبلوماسية",
+        "culture": "الثقافة",
+        "economie": "الاقتصاد",
+        "societe": "المجتمع",
+        "education": "التعليم"
+      },
+      "fields": {
+        "titre": "العنوان",
+        "description": "الوصف",
+        "contenu": "المحتوى",
+        "image": "الصورة المميزة",
+        "status": "الحالة",
+        "categorie": "الفئة",
+        "tags": "العلامات",
+        "priorite": "الأولوية",
+        "langue": "اللغة",
+        "metaTitre": "عنوان الميتا",
+        "metaDescription": "وصف الميتا",
+        "datePublication": "تاريخ النشر",
+        "vues": "عدد المشاهدات"
+      },
+      "priority": {
+        "normale": "عادي",
+        "importante": "مهم",
+        "urgente": "عاجل"
+      }
+    },
+    "gestionEvenement": {
+      "title": "إدارة الأحداث",
+      "total_brouillon": "إجمالي الأحداث المسودة",
+      "total_publie": "إجمالي الأحداث المنشورة",
+      "total_evenement": "إجمالي الأحداث",
+      "create_event": "إنشاء حدث",
+      "edit_event": "تعديل الحدث",
+      "delete_event": "حذف الحدث",
+      "view_event": "عرض الحدث",
+      "search_placeholder": "البحث بالعنوان أو الوصف أو المكان...",
+      "no_results": "لم يتم العثور على أحداث",
+      "status": {
+        "brouillon": "مسودة",
+        "publie": "منشور",
+        "annule": "ملغى",
+        "archive": "مؤرشف"
+      },
+      "type": {
+        "conference": "مؤتمر",
+        "seminaire": "ندوة",
+        "atelier": "ورشة عمل",
+        "ceremonie": "حفل",
+        "reception": "استقبال",
+        "formation": "تدريب",
+        "autre": "أخرى"
+      },
+      "priority": {
+        "normale": "عادي",
+        "importante": "مهم",
+        "urgente": "عاجل"
+      }
+    },
+    "gestionGalerie": {
+      "photo": {
+        "title": "إدارة معرض الصور",
+        "total_brouillon": "إجمالي الصور المسودة",
+        "total_publie": "إجمالي الصور المنشورة",
+        "total_photo": "إجمالي الصور",
+        "create_photo": "إضافة صورة",
+        "edit_photo": "تعديل الصورة",
+        "delete_photo": "حذف الصورة",
+        "view_photo": "عرض الصورة",
+        "search_placeholder": "البحث بالعنوان أو الوصف أو العلامات...",
+        "no_results": "لم يتم العثور على صور",
+        "status": {
+          "brouillon": "مسودة",
+          "publie": "منشور",
+          "archive": "مؤرشف"
+        },
+        "category": {
+          "evenement": "حدث",
+          "reception": "استقبال",
+          "conference": "مؤتمر",
+          "culture": "ثقافة",
+          "diplomatie": "دبلوماسية"
+        },
+        "fields": {
+          "titre": "العنوان",
+          "description": "الوصف",
+          "image": "الصورة",
+          "status": "الحالة",
+          "categorie": "الفئة",
+          "tags": "العلامات",
+          "dateAjout": "تاريخ الإضافة",
+          "taille": "حجم الملف",
+          "resolution": "الدقة"
+        }
+      },
+      "videos": {
+        "title": "إدارة معرض الفيديو",
+        "total_brouillon": "إجمالي الفيديوهات المسودة",
+        "total_publie": "إجمالي الفيديوهات المنشورة",
+        "total_video": "إجمالي الفيديوهات",
+        "create_video": "إضافة فيديو",
+        "edit_video": "تعديل الفيديو",
+        "delete_video": "حذف الفيديو",
+        "view_video": "عرض الفيديو",
+        "search_placeholder": "البحث بالعنوان أو الوصف أو العلامات...",
+        "no_results": "لم يتم العثور على فيديوهات",
+        "status": {
+          "brouillon": "مسودة",
+          "publie": "منشور",
+          "archive": "مؤرشف"
+        },
+        "category": {
+          "evenement": "حدث",
+          "interview": "مقابلة",
+          "presentation": "عرض تقديمي",
+          "culture": "ثقافة",
+          "documentaire": "وثائقي"
+        },
+        "fields": {
+          "titre": "العنوان",
+          "description": "الوصف",
+          "url": "رابط الفيديو",
+          "thumbnail": "الصورة المصغرة",
+          "status": "الحالة",
+          "categorie": "الفئة",
+          "tags": "العلامات",
+          "dateAjout": "تاريخ الإضافة",
+          "duree": "المدة",
+          "qualite": "الجودة"
+        }
+      }
+    },
+    "gestionService": {
+      "title": "إدارة الخدمات",
+      "total_service": "إجمالي الخدمات",
+      "total_actif": "الخدمات النشطة",
+      "total_inactif": "الخدمات غير النشطة",
+      "create_service": "إنشاء خدمة",
+      "edit_service": "تعديل الخدمة",
+      "delete_service": "حذف الخدمة",
+      "view_service": "عرض الخدمة",
+      "search_placeholder": "البحث بالاسم أو الوصف أو النوع...",
+      "no_results": "لم يتم العثور على خدمات",
+      "status": {
+        "actif": "نشط",
+        "inactif": "غير نشط",
+        "maintenance": "قيد الصيانة"
+      },
+      "type": {
+        "consulaire": "خدمة قنصلية",
+        "visa": "فيزا",
+        "passeport": "جواز سفر",
+        "authentification": "مصادقة",
+        "notariat": "خدمة توثيق"
+      },
+      "fields": {
+        "nom": "اسم الخدمة",
+        "description": "الوصف",
+        "type": "نوع الخدمة",
+        "status": "الحالة",
+        "tarif": "الرسوم",
+        "delaiTraitement": "مدة المعالجة",
+        "documentsRequis": "الوثائق المطلوبة",
+        "contact": "الشخص المسؤول",
+        "horaires": "أوقات العمل"
+      }
+    }
+  },
   "ChatApp": {
     "blankMessageTitle": "لا توجد رسالة بعد...",
     "blankMessageDesc": "لا تقلق، فقط خذ نفسًا عميقًا وقل 'مرحبًا'",

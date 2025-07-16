@@ -156,7 +156,7 @@ const CrmPage = () => {
             </CardContent>
           </Card>
         </div>
-        <div className="col-span-12 lg:col-span-4 space-y-5">
+        <div className="col-span-8 lg:col-span-4 space-y-5">
           <Card>
             <CardHeader className="flex-row gap-3">
               <CardTitle className="flex-1">{t("campaigns")}</CardTitle>
@@ -198,6 +198,7 @@ const CrmPage = () => {
             <TransactionsTable />
           </CardContent>
         </Card>
+        
       </div>
     </div>
   );

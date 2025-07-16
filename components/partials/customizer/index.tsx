@@ -19,7 +19,7 @@ import ColorSchema from "./color-schema";
 import SetSkin from "./set-skin";
 import MenuHidden from "./menu-hidden";
 import SearchBarToggle from "./search-bar-toggle";
-import TeamSwitcherToggle from "./team-switcher-toggle";
+// import TeamSwitcherToggle from "./team-switcher-toggle";
 import SetContentWidth from "./set-content-width";
 import SetLayout from "./set-layout";
 import SetSidebar from "./set-sidebar";
@@ -96,7 +96,7 @@ const ThemeCustomize = ({ }) => {
                   <div className="space-y-3">
                     <MenuHidden />
                     <SearchBarToggle />
-                    <TeamSwitcherToggle />
+                    {/* <TeamSwitcherToggle /> */}
                   </div>
                   <SetContentWidth />
                 </div>
