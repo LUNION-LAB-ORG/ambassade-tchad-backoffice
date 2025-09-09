@@ -1,4 +1,4 @@
-import { baseURL } from "@/config";
+import { baseFileURL } from "@/config";
 
 /**
  * Ajoute une URL de base à un lien.
@@ -7,10 +7,9 @@ import { baseURL } from "@/config";
  * @param {string} link Le lien à compléter (par exemple, "/page.html" ou "https://www.autreexemple.com/").
  * @returns {string} Le lien complet.
  */
-export function getFullUrlFile(link: string, baseUrl: string = baseURL) {
+export function getFullUrlFile(link: string, baseUrl: string = baseFileURL) {
     try {
-        const absoluteUrl = new URL(link, baseUrl.replace("/api/v1", ""));
-
+        const absoluteUrl = new URL(link, baseUrl);
         return absoluteUrl.href;
     } catch (e) {
         console.error("Erreur lors de la création de l'URL : ", e);
